@@ -6,42 +6,47 @@
 //
 
 import Foundation
-import FirebaseFirestore
 
-struct User: Identifiable, Codable {
-    //creating the User Object
+struct User: Identifiable, Codable {            //creating the User Object
     var documentID: String?
     var id: String
-    var officerTitle: String
-    var officerFullName: String
     var email: String
+    var tac: Bool
+    var userType: String
+    var username: String
     
-    init(id: String, officerTitle: String, officerFullName: String, email:String) {    //constructs the User Object
+    
+   init(id: String, email: String, tac: Bool, userType: String, username: String) {    //constructs the User Object
         self.id = id
-        self.officerTitle = officerTitle
-        self.officerFullName = officerFullName
         self.email = email
+        self.tac = tac
+        self.userType = userType
+        self.username = username
     }
     
     init?(data: [String: Any], documentID: String) {
         guard let id = data["id"] as? String,
-              let officerTitle = data["officerTitle"] as? String,
-              let officerFullName = data["officerFullName"] as? String,
-              let email = data["email"] as? String else {
+              let email = data["email"] as? String,
+              let tac = data["tac"] as? Bool,
+              let userType = data["userType"] as? String,
+              let username = data["username"] as? String else {
             return nil
         }
         self.documentID = documentID
         self.id = id
-        self.officerTitle = officerTitle
-        self.officerFullName = officerFullName
         self.email = email
+        self.tac = tac
+        self.userType = userType
+        self.username = username
     }
     
     func asDictionary() -> [String: Any] {
         return ["id": self.id,
-                "officerTitle": self.officerTitle,
-                "officerFullName": self.officerFullName,
-                "email": self.email
+                "email": self.email,
+                "tac": self.tac,
+                "userType": self.userType,
+                "username": self.username
         ]
     }
+    
 }
