@@ -4,17 +4,14 @@
 //
 //  Created by Kinneret Kanik on 20/02/2023.
 //
-
 import Foundation
 import CoreLocation
 import Firebase
 import FirebaseFirestore
 
 struct PinDrop {
-    //wont let me do codable and identifiable!!!
-   // @DocumentID public var id: String? = UUID().uuidString        // Document ID for FIRESTORE NOTIFICATION
-   // var documentID: String
     var userID: String              // Pulled from exisitng user from User collection
+    var pinDropId: String
     var userCoordinateLat: Double
     var userCoordinateLong: Double
     var reportedLocationLat: Double
@@ -28,11 +25,12 @@ struct PinDrop {
     var timestamp: String
     
     
-    init(acceptedNotif: Bool, identity: String, importance: Int, userCoordinateLat: Double, userCoordinateLong: Double, reportedLocationLat: Double, reportedLocationLong: Double, notifName: String, state: Bool, submit: Bool, timestamp: String, userID: String) {
+    init(acceptedNotif: Bool, identity: String, importance: Int, userCoordinateLat: Double, pinDropId: String, userCoordinateLong: Double, reportedLocationLat: Double, reportedLocationLong: Double, notifName: String, state: Bool, submit: Bool, timestamp: String, userID: String) {
+      
         self.userID = userID
+        self.pinDropId = pinDropId
         self.identity = identity
         self.acceptedNotif = acceptedNotif
-        //self.liveLocation = liveLocation
         self.importance = importance
         self.notifName = notifName
         self.state = state
@@ -43,8 +41,6 @@ struct PinDrop {
         self.reportedLocationLat = reportedLocationLat
         self.reportedLocationLong = reportedLocationLong
     }
-    
-
 
     init?(data: [String: Any], documentID: String) {
         guard let userID = data["userID"] as? String,
@@ -53,6 +49,7 @@ struct PinDrop {
               let reportedLocationLat = data["reportedLocationLat"] as? Double,
               let reportedLocationLong = data["reportedLocationLong"] as? Double,
               let identity = data["identity"] as? String,
+              let pinDropId = documentID as? String,
               let acceptedNotif = data["acceptedNotif"] as? Bool,
               let importance = data["importance"] as? Int,
               let notifName = data["notifName"] as? String,
@@ -74,6 +71,7 @@ struct PinDrop {
         self.state = state
         self.submit = submit
         self.timestamp = timestamp
+        self.pinDropId = pinDropId
     }
     
     
@@ -87,6 +85,7 @@ struct PinDrop {
             "reportedLocationLat": self.reportedLocationLat,
             "reportedLocationLong": self.reportedLocationLong,
             "notifName": self.notifName,
+            "pinDropId": self.pinDropId,
             "state": self.state,
             "submit": self.submit,
             "userID": self.userID,
@@ -94,5 +93,4 @@ struct PinDrop {
         ]
         return dict
     }
-    
 }

@@ -32,6 +32,10 @@
 		D888370729AFC5CC0013176B /* MUPDProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888370629AFC5CC0013176B /* MUPDProfile.swift */; };
 		D888370929AFC5EA0013176B /* MUPDProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888370829AFC5EA0013176B /* MUPDProfileService.swift */; };
 		D888370D29B10BC20013176B /* MUPDProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888370C29B10BC20013176B /* MUPDProfileViewController.swift */; };
+		D888370F29B174490013176B /* AnnotationTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888370E29B174490013176B /* AnnotationTypes.swift */; };
+		D888371129B1749B0013176B /* PinDropDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888371029B1749B0013176B /* PinDropDetailViewController.swift */; };
+		D888371629B1826E0013176B /* ReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888371529B1826E0013176B /* ReportsViewController.swift */; };
+		D888371829B1827F0013176B /* CreateReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888371729B1827F0013176B /* CreateReportViewController.swift */; };
 		D8A6799229AE60B800A65C35 /* OpeningPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A6799129AE60B800A65C35 /* OpeningPageViewController.swift */; };
 		D8A6799429AE615400A65C35 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A6799329AE615400A65C35 /* LoginViewController.swift */; };
 		D8A6799629AE616100A65C35 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A6799529AE616100A65C35 /* RegisterViewController.swift */; };
@@ -60,6 +64,10 @@
 		D888370629AFC5CC0013176B /* MUPDProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MUPDProfile.swift; sourceTree = "<group>"; };
 		D888370829AFC5EA0013176B /* MUPDProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MUPDProfileService.swift; sourceTree = "<group>"; };
 		D888370C29B10BC20013176B /* MUPDProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MUPDProfileViewController.swift; sourceTree = "<group>"; };
+		D888370E29B174490013176B /* AnnotationTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationTypes.swift; sourceTree = "<group>"; };
+		D888371029B1749B0013176B /* PinDropDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinDropDetailViewController.swift; sourceTree = "<group>"; };
+		D888371529B1826E0013176B /* ReportsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsViewController.swift; sourceTree = "<group>"; };
+		D888371729B1827F0013176B /* CreateReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReportViewController.swift; sourceTree = "<group>"; };
 		D8A6799129AE60B800A65C35 /* OpeningPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningPageViewController.swift; sourceTree = "<group>"; };
 		D8A6799329AE615400A65C35 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D8A6799529AE616100A65C35 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -110,12 +118,10 @@
 			isa = PBXGroup;
 			children = (
 				D86D1AD129A3E5B20092A5D7 /* App Files */,
-				D8A6799029AE60A000A65C35 /* Log In */,
-				D807E9D729AE66BD00F46311 /* MUSOSProfile */,
-				D888370529AFC5BC0013176B /* MUPD Profile */,
-				D86D1AE029A3E7F20092A5D7 /* User */,
-				D86D1AE229A3E81B0092A5D7 /* Report */,
-				D86D1AE329A3E82A0092A5D7 /* Notification */,
+				D888371429B1823C0013176B /* ReportVC */,
+				D8A6799029AE60A000A65C35 /* Log InVC */,
+				D888371229B17D5F0013176B /* MapVC */,
+				D888371329B182110013176B /* Firestore */,
 				D86D1AC329A3E5A70092A5D7 /* Main.storyboard */,
 				D86D1AC829A3E5A90092A5D7 /* LaunchScreen.storyboard */,
 				D86D1AC629A3E5A90092A5D7 /* Assets.xcassets */,
@@ -153,15 +159,13 @@
 			path = Report;
 			sourceTree = "<group>";
 		};
-		D86D1AE329A3E82A0092A5D7 /* Notification */ = {
+		D86D1AE329A3E82A0092A5D7 /* PinDrop */ = {
 			isa = PBXGroup;
 			children = (
 				D86D1AF029A3E8890092A5D7 /* Pin Drop.swift */,
 				D86D1AF229A3E8960092A5D7 /* Pin Drop Service.swift */,
-				D86D1AFC29A3F3B00092A5D7 /* MapViewController.swift */,
-				D86D1AFE29A3F3DF0092A5D7 /* NotificationAnnotation.swift */,
 			);
-			path = Notification;
+			path = PinDrop;
 			sourceTree = "<group>";
 		};
 		D888370529AFC5BC0013176B /* MUPD Profile */ = {
@@ -172,16 +176,49 @@
 				D888370C29B10BC20013176B /* MUPDProfileViewController.swift */,
 			);
 			name = "MUPD Profile";
+			path = ..;
 			sourceTree = "<group>";
 		};
-		D8A6799029AE60A000A65C35 /* Log In */ = {
+		D888371229B17D5F0013176B /* MapVC */ = {
+			isa = PBXGroup;
+			children = (
+				D86D1AFC29A3F3B00092A5D7 /* MapViewController.swift */,
+				D86D1AFE29A3F3DF0092A5D7 /* NotificationAnnotation.swift */,
+				D888370E29B174490013176B /* AnnotationTypes.swift */,
+				D888371029B1749B0013176B /* PinDropDetailViewController.swift */,
+			);
+			path = MapVC;
+			sourceTree = "<group>";
+		};
+		D888371329B182110013176B /* Firestore */ = {
+			isa = PBXGroup;
+			children = (
+				D807E9D729AE66BD00F46311 /* MUSOSProfile */,
+				D888370529AFC5BC0013176B /* MUPD Profile */,
+				D86D1AE029A3E7F20092A5D7 /* User */,
+				D86D1AE229A3E81B0092A5D7 /* Report */,
+				D86D1AE329A3E82A0092A5D7 /* PinDrop */,
+			);
+			path = Firestore;
+			sourceTree = "<group>";
+		};
+		D888371429B1823C0013176B /* ReportVC */ = {
+			isa = PBXGroup;
+			children = (
+				D888371529B1826E0013176B /* ReportsViewController.swift */,
+				D888371729B1827F0013176B /* CreateReportViewController.swift */,
+			);
+			path = ReportVC;
+			sourceTree = "<group>";
+		};
+		D8A6799029AE60A000A65C35 /* Log InVC */ = {
 			isa = PBXGroup;
 			children = (
 				D8A6799129AE60B800A65C35 /* OpeningPageViewController.swift */,
 				D8A6799329AE615400A65C35 /* LoginViewController.swift */,
 				D8A6799529AE616100A65C35 /* RegisterViewController.swift */,
 			);
-			name = "Log In";
+			name = "Log InVC";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,8 +309,11 @@
 				D807E9D929AE66CF00F46311 /* Profile.swift in Sources */,
 				D86D1ABE29A3E5A70092A5D7 /* AppDelegate.swift in Sources */,
 				D86D1AF129A3E8890092A5D7 /* Pin Drop.swift in Sources */,
+				D888371629B1826E0013176B /* ReportsViewController.swift in Sources */,
+				D888371129B1749B0013176B /* PinDropDetailViewController.swift in Sources */,
 				D86D1AED29A3E8720092A5D7 /* Report.swift in Sources */,
 				D86D1AEF29A3E87B0092A5D7 /* Report Service.swift in Sources */,
+				D888370F29B174490013176B /* AnnotationTypes.swift in Sources */,
 				D86D1AE729A3E8590092A5D7 /* UserService.swift in Sources */,
 				D888370929AFC5EA0013176B /* MUPDProfileService.swift in Sources */,
 				D8A6799429AE615400A65C35 /* LoginViewController.swift in Sources */,
@@ -281,6 +321,7 @@
 				D86D1AE529A3E8510092A5D7 /* User.swift in Sources */,
 				D8A6799629AE616100A65C35 /* RegisterViewController.swift in Sources */,
 				D86D1AF329A3E8960092A5D7 /* Pin Drop Service.swift in Sources */,
+				D888371829B1827F0013176B /* CreateReportViewController.swift in Sources */,
 				D86D1AFF29A3F3DF0092A5D7 /* NotificationAnnotation.swift in Sources */,
 				D8A6799229AE60B800A65C35 /* OpeningPageViewController.swift in Sources */,
 				D86D1AFD29A3F3B00092A5D7 /* MapViewController.swift in Sources */,
