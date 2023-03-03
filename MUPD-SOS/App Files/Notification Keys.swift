@@ -10,3 +10,4 @@ import Foundation
 let kSOSReportsChanged = "edu.monmouth.s1278692.sosReportsChanged"
 
 let kSOSNotificaionsChanged = "edu.monmouth.s1278692.sosNotifiationsChanged"
+

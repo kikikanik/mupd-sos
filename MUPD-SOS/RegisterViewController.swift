@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RegisterPageViewController: UIViewController {
+class RegisterViewController: UIViewController {
     
     let userService = UserService.shared
     

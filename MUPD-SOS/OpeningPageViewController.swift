@@ -7,9 +7,7 @@
 import UIKit
 
 class OpeningPageViewController: UIViewController {
-    
-    let userService = UserService.shared
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
     }
