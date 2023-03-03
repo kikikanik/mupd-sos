@@ -1,6 +1,6 @@
 //
-//  Report Service.swift
-//  MUPD-SOS
+//  ReportService.swift
+//  ReportDemo
 //
 //  Created by Kinneret Kanik on 20/02/2023.
 //
@@ -10,51 +10,69 @@ import FirebaseFirestore
 import Firebase
 
 class ReportService {
-
+    
     static let shared = ReportService()
     
-    // let userService = UserService.shared
-    // var currentUser: User?
-
+    let userService = UserService.shared
+    
     let fsCollection = Firestore.firestore().collection("report")
-    var sosReports: [Report] = [] //postedMessages array
-        
+    
+    var mupdreports: [Report] = []
+    
+    var currentUser: User!
+    
     private init () {
         
     }
     
-    // Adding report type/name from 'EmergencyTabViewController'
-    func addReportName(report: Report) {
-        fsCollection.addDocument(data: report.createReportDict())
+    func addReport(report: Report, docID: String) {
+        fsCollection.document(docID).setData(report.createReportDict()) {
+            err in
+            if let err = err {
+                print ("ERROR ADDING THE Report DOCUMENT!! \(err)")
+            }
+            else {
+                print ("DOCUMENT ADDED WITH Report DOC ID: \(docID)")
+            }
+        }
     }
     
-    // Adding a NEW pin drop with NEW documentID
-    func addReport(report: Report) {
-        fsCollection.addDocument(data: report.createReportDict()) //sending Report attributes from object to Firestore
+    func addReportInfo(currentUser: Report) {
+        let uid = userService.currentUser!.documentID!
+        print ("UNIQUE IDENTIFIER OF USER: \(uid)")
+        self.addReport(report: currentUser, docID: uid)
     }
     
+    func getReportInfo(forReportId id: String) -> Report? {
+        if let index = (mupdreports).firstIndex(where: {$0.reportID == id}) {
+            return mupdreports[index]
+        }
+        return nil;
+    }
+     
     //func here to get all the notifications from firestore
     func observeReports () {
         
-        fsCollection.addSnapshotListener { (querySnapshot, err) in
+        fsCollection.addSnapshotListener { [self] (querySnapshot, err) in
            
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-                self.sosReports = []
+                
                 for document in querySnapshot!.documents {
                     print("\(document.documentID) => \(document.data())")
-                   
+                    
                     if let aReport = Report(data: document.data(), documentID: document.documentID) {
-                        self.sosReports.append(aReport)
+                        print("Success adding report to array aReport")
+                        self.mupdreports.append(aReport)
+                    } else {
+                        print("Error adding reports to array aReports")
                     }
                 }
-            // self.sosReports.removeAll()
-                
-                NotificationCenter.default.post(name: Notification.Name(rawValue:  kSOSReportsChanged), object: self)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: kSOSReportsChanged), object: self)
             }
         }
        
     }
-
+    
 }

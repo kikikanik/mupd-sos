@@ -62,7 +62,7 @@ class MUPDProfileViewController: UIViewController {
     @IBAction func SaveProfile(_ sender: Any) {
         
         guard let usertitle = usertitle.text, !usertitle.isEmpty else {
-            print ("User titlw field is empty!")
+            print ("User title field is empty!")
             alertProfileError()
             return
         }
@@ -90,9 +90,9 @@ class MUPDProfileViewController: UIViewController {
                 print("PROFILE SAVED TO DATABASE!")
                 
                 //Saving profile info in the text fields -> NOT WORKING!!!!!!
-                UserDefaults.standard.set(saveInfo.isSelected, forKey: "SaveProfile")
+                //UserDefaults.standard.set(saveInfo.isSelected, forKey: "SaveProfile")
             
-                performSegue(withIdentifier: "saveProfile", sender: nil)
+              //  performSegue(withIdentifier: "saveProfile", sender: nil)
         
     }
     

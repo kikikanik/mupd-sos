@@ -173,7 +173,6 @@
 			children = (
 				D888370629AFC5CC0013176B /* MUPDProfile.swift */,
 				D888370829AFC5EA0013176B /* MUPDProfileService.swift */,
-				D888370C29B10BC20013176B /* MUPDProfileViewController.swift */,
 			);
 			name = "MUPD Profile";
 			path = ..;
@@ -217,6 +216,7 @@
 				D8A6799129AE60B800A65C35 /* OpeningPageViewController.swift */,
 				D8A6799329AE615400A65C35 /* LoginViewController.swift */,
 				D8A6799529AE616100A65C35 /* RegisterViewController.swift */,
+				D888370C29B10BC20013176B /* MUPDProfileViewController.swift */,
 			);
 			name = "Log InVC";
 			sourceTree = "<group>";
