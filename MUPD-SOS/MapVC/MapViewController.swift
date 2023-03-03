@@ -108,6 +108,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                         pindropImageView.setBackgroundImage(UIImage(named: "susperson"), for: UIControl.State())
                     case "Shooter":
                         pindropImageView.setBackgroundImage(UIImage(named: "shooter"), for: UIControl.State())
+                    case "Rabid Animal":
+                        pindropImageView.setBackgroundImage(UIImage(named: "rabidanimal"), for: UIControl.State())
                     default:
                         pindropImageView.setBackgroundImage(UIImage(systemName: "questionmark.square.dashed"), for: UIControl.State())
                     }

@@ -72,7 +72,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qX9-Tj-XEV">
-                                <rect key="frame" x="-3" y="59" width="391" height="44"/>
+                                <rect key="frame" x="-4" y="59" width="390" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Welcome to MUPD-SOS" id="h6D-Ia-3u5"/>
@@ -160,7 +160,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w6G-m7-6o0">
-                                <rect key="frame" x="-11" y="59" width="397" height="44"/>
+                                <rect key="frame" x="-12" y="59" width="396" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Please login below" id="yo6-Ha-Vyc"/>
@@ -257,7 +257,6 @@
         <!--Chats-->
         <scene sceneID="OqT-ka-D29">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Jou-AT-20K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Uod-eB-ZG9" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Chats" image="message.fill" catalog="system" id="UtF-fQ-I9m"/>
                     <toolbarItems/>
@@ -270,6 +269,7 @@
                         <segue destination="oYc-Tn-J3N" kind="relationship" relationship="rootViewController" id="UXY-Wy-yFT"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jou-AT-20K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-11" y="1489"/>
         </scene>
@@ -356,7 +356,6 @@
                         <barButtonItem key="rightBarButtonItem" title="Save" id="GRv-cx-vvA">
                             <connections>
                                 <action selector="SaveProfile:" destination="kS4-c3-8qq" id="LHm-Ns-XUP"/>
-                                <segue destination="Y0c-vD-VAh" kind="show" identifier="saveProfile" id="OFg-Rb-t0C"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -393,7 +392,7 @@
                                 </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TqI-My-FaJ">
-                                <rect key="frame" x="-9" y="3" width="392" height="44"/>
+                                <rect key="frame" x="-11" y="3" width="393" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="You're a new User! Please Register Below!" id="xDl-eg-efr"/>
@@ -580,6 +579,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3DT-Zu-ZXz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" id="ICB-SQ-OJq"/>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="dR4-FJ-uMA"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uTn-Ih-dP9">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -595,7 +595,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="OFg-Rb-t0C"/>
+        <segue reference="ABC-Gg-LRM"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="doc.fill" catalog="system" width="115" height="128"/>
