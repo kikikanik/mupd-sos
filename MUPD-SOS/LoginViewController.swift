@@ -89,8 +89,6 @@ class LoginViewController: UIViewController {
        
         self.shouldPerformSegue(withIdentifier: "loginSuccess", sender: sender)
 
-      
-        
         userService.signIn(email: email, password: password, currentUser: currentUser) { response in
             
             if (response) {
