@@ -160,7 +160,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w6G-m7-6o0">
-                                <rect key="frame" x="-15" y="59" width="396" height="44"/>
+                                <rect key="frame" x="-3" y="0.0" width="396" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Please login below" id="yo6-Ha-Vyc"/>
