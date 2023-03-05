@@ -7,75 +7,31 @@
 
 import UIKit
 
-class ReportDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ReportDetailViewController: UIViewController {
     
-    let reportCellReuseIdentifier = "reportCell"
-    var editedReport: Report?
-    var enteredState: Int = 0
+   // @IBOutlet weak var name: UILabel!
+  //  @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var emergencyTitle: UILabel!
     
-    // reference to selected tableViewCells section and row
-    var selectedIndexPath: IndexPath?
-
-    //reference to service files
-    let reportService = ReportService.shared
-    let userService = UserService.shared
+    @IBOutlet weak var postedBy: UILabel!
     
-    var reports: [String] = []
+    @IBOutlet weak var timestamp: UILabel!
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var message: UITextView!
     
-    override func viewDidLoad() {
+    var selectedReport : Report!
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
-        tableView.dataSource = self
-        tableView.delegate = self
+        emergencyTitle.text = selectedReport.emergencyType
+        postedBy.text = selectedReport.postedBy
+        timestamp.text = selectedReport.timestamp
+        message.text = selectedReport.message
         
-        self.title = editedReport?.emergencyType
-
+        //name.text = selectedReport.id + " - " + selectedShape.name
+        //image.image = UIImage(named: selectedShape.imageName)
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
-        let cell = tableView.dequeueReusableCell(withIdentifier: reportCellReuseIdentifier, for: indexPath)
-        
-        switch(indexPath.row) {
-            /*
-             var reportID: String
-             var emergencyType: String
-             var message: String
-             var postedBy: String
-             var timestamp: String
-             */
-        case 0:
-            cell.textLabel?.text = "Emergency Title: "
-            cell.detailTextLabel?.text = editedReport?.emergencyType
-        case 1:
-            cell.textLabel?.text = "Time Posted: "
-            cell.detailTextLabel?.text = editedReport?.timestamp
-        case 2:
-            cell.textLabel?.text = "Posted By: "
-            cell.detailTextLabel?.text = editedReport?.postedBy
-        case 3:
-            cell.textLabel?.text = "Message: "
-            cell.detailTextLabel?.text = editedReport?.emergencyType
-        case 4:
-            cell.textLabel?.text = "State: "
-            // cell.detailTextLabel?.text = String(editedSchool?.properties.rating ?? 0)
-           // cell.detailTextLabel?.text = getStars(editedSchool?.properties.rating ?? 0)
-        default:
-            cell.textLabel?.text = "?"
-            cell.detailTextLabel?.text = "?"
-        }
-        
-        return cell
-    }
-
 }

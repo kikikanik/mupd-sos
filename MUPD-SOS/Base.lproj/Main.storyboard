@@ -241,7 +241,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Emergency Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oct-zc-egh">
-                                                    <rect key="frame" x="250" y="11" width="123" height="21"/>
+                                                    <rect key="frame" x="250" y="0.0" width="123" height="32"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -249,6 +249,11 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="emergencyType" destination="oct-zc-egh" id="ceG-lV-nLs"/>
+                                            <outlet property="postedBy" destination="8fm-XP-8k1" id="xTm-iL-yoq"/>
+                                            <outlet property="sourceImage" destination="zKc-6Q-YlI" id="Um3-ga-ynv"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -270,7 +275,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gMc-AR-9f4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="857" y="2404"/>
+            <point key="canvasLocation" x="855.72519083969462" y="2403.5211267605637"/>
         </scene>
         <!--Report Detail View Controller-->
         <scene sceneID="3b4-cc-POq">
@@ -314,6 +319,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="nzE-za-NLK"/>
+                    <connections>
+                        <outlet property="emergencyTitle" destination="kQB-Mg-CZT" id="qeb-qY-s1o"/>
+                        <outlet property="message" destination="hP1-9w-0Ja" id="FfB-AX-5J9"/>
+                        <outlet property="postedBy" destination="oh1-Hs-Q0k" id="cjp-3D-1qA"/>
+                        <outlet property="timestamp" destination="dOp-BX-w6S" id="kNl-QY-INX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LZt-go-gO7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

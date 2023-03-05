@@ -13,18 +13,18 @@ class ReportsViewController: UIViewController {
     let mupdprofileService = MUPDProfileService.shared
     let reportService = ReportService.shared
     
-    var reports: [Report] = [] //njCountiesSorted
+    var reports: [Report] = [] //njCountiesSorted or shapeList
     var selectedReport: Report?
-    var editedReport: Report? //editedScool
+    var editedReport: Report? //editedScoolΩ
     var enteredState: Int = 0
     
     @IBOutlet var reportsTableView: UITableView!
     
     var selectedIndexPath: IndexPath?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         reportsTableView.delegate = self
         reportsTableView.dataSource = self
         
@@ -32,29 +32,25 @@ class ReportsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-            
+        
         NotificationCenter.default.addObserver(self, selector: #selector(reportsReceived), name: Notification.Name(rawValue: kSOSReportsChanged), object: nil)
-            
+        
         reportService.observeReports()
-
-        if let reloadIndexPath = selectedIndexPath {
-            reportsTableView.reloadRows(at: [reloadIndexPath], with: .automatic)
-        }
         
     }
-
+    
     @objc
     func reportsReceived() {
         reports.removeAll()
         for report in reportService.mupdreports {
             let report = Report(reportID: "userService.currentUser!.email", emergencyType: report.emergencyType, message: report.message, postedBy: report.postedBy, timestamp: report.timestamp)
             
-           /*
-            let report = Report(reportID: userService.currentUser!.email, emergencyType: report.emergencyType, message: report.message, postedBy: report.postedBy, timestamp: report.timestamp)
-            */
+            /*
+             let report = Report(reportID: userService.currentUser!.email, emergencyType: report.emergencyType, message: report.message, postedBy: report.postedBy, timestamp: report.timestamp)
+             */
             reports.append(report)
         }
-
+        
         reportsTableView.reloadData()
         print("(7) this is all reports:" )
         print(reports)
@@ -68,16 +64,17 @@ class ReportsViewController: UIViewController {
         
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        if let indexPath = selectedIndexPath {
+        if(segue.identifier == "detailSegue")
+        {
+            let indexPath = self.reportsTableView.indexPathForSelectedRow!
             
-            let selectedReport = reportService.mupdreports[indexPath.row]
+            let tableViewDetail = segue.destination as? ReportDetailViewController
             
-            let editedReport = reportService.getReportInfo(forReportId: selectedReport.reportID)
+            let selectedReport = reports[indexPath.row]
             
-            if (segue.identifier == "reportDetailSegue") {
-                let dvc = segue.destination as! ReportDetailViewController
-                dvc.editedReport = editedReport
-            }
+            tableViewDetail!.selectedReport = selectedReport
+            
+            self.reportsTableView.deselectRow(at: indexPath, animated: true)
         }
     }
 }
@@ -86,8 +83,7 @@ extension ReportsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("you tapped me!")
-        selectedIndexPath = indexPath
-        performSegue(withIdentifier: "reportDetailSegue", sender: self)
+        self.performSegue(withIdentifier: "detailSegue", sender: self)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -104,13 +100,20 @@ extension ReportsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reportCell", for: indexPath)
+       
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reportCell") as! ReportTableViewCell
         
-        //if let reportData = reportService.reports[indexPath.section] {
-            let report = reports[indexPath.row]
-            cell.textLabel?.text = report.emergencyType
-            //cell.postedByLabel?.text = "Posted By: " + report.postedBy!
+        let thisReport = reports[indexPath.row]
+        
+        cell.emergencyType?.text = thisReport.emergencyType
+        cell.postedBy?.text = thisReport.postedBy
+        cell.sourceImage.image = UIImage(named: "mulogo")
+
             /*
+             /if let reportData = reportService.reports[indexPath.section] {
+                 let report = reports[indexPath.row]
+                 cell.textLabel?.text = report.emergencyType
+                 //cell.postedByLabel?.text = "Posted By: " + report.postedBy!
              switch (report.emergencyType) {
              case "Medical":
              cell.imageView?.image = UIImage(named: "medical")
@@ -126,4 +129,18 @@ extension ReportsViewController: UITableViewDataSource {
         return cell
         
         }
+    
+    /*
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+     {
+         let tableViewCell = tableView.dequeueReusableCell(withIdentifier: "tableViewCellID") as! TableViewCell
+         
+         let thisShape = shapeList[indexPath.row]
+         
+         tableViewCell.shapeName.text = thisShape.id + " " + thisShape.name
+         tableViewCell.shapeImage.image = UIImage(named: thisShape.imageName)
+         
+         return tableViewCell
+     }
+     */
 }

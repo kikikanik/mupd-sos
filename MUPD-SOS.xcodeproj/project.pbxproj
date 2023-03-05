@@ -209,9 +209,9 @@
 			isa = PBXGroup;
 			children = (
 				D888371529B1826E0013176B /* ReportsViewController.swift */,
+				D8163DEA29B4E624003A25CC /* ReportTableViewCell.swift */,
 				D888371729B1827F0013176B /* CreateReportViewController.swift */,
 				D888372129B4D6940013176B /* ReportDetailViewController.swift */,
-				D8163DEA29B4E624003A25CC /* ReportTableViewCell.swift */,
 			);
 			path = ReportVC;
 			sourceTree = "<group>";
