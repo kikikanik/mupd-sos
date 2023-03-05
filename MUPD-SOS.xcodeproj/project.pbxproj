@@ -137,7 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				D86D1AD129A3E5B20092A5D7 /* App Files */,
-				D8A6799029AE60A000A65C35 /* Log InVC */,
+				D8DD0C8A29B5557C00634014 /* Login VC */,
 				D8163DF029B50AD6003A25CC /* ChatVC */,
 				D888371429B1823C0013176B /* ReportVC */,
 				D888371229B17D5F0013176B /* MapVC */,
@@ -234,14 +234,14 @@
 			path = ReportVC;
 			sourceTree = "<group>";
 		};
-		D8A6799029AE60A000A65C35 /* Log InVC */ = {
+		D8DD0C8A29B5557C00634014 /* Login VC */ = {
 			isa = PBXGroup;
 			children = (
 				D8A6799129AE60B800A65C35 /* OpeningPageViewController.swift */,
 				D8A6799329AE615400A65C35 /* LoginViewController.swift */,
 				D8A6799529AE616100A65C35 /* RegisterViewController.swift */,
 			);
-			name = "Log InVC";
+			path = "Login VC";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
