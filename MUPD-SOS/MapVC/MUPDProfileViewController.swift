@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class MUPDProfileViewController: UIViewController {
 
@@ -20,8 +21,29 @@ class MUPDProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        UITextField.textDidEndEditingNotification
+        //UITextField.textDidEndEditingNotification
     }
+    
+    @IBAction func logOutButtonTapped(_ sender: Any) {
+
+
+        do {
+            try FirebaseAuth.Auth.auth().signOut()
+            print("Successful log out!")
+            
+            UserDefaults.standard.setValue(nil, forKey: "email")
+            UserDefaults.standard.setValue(nil, forKey: "id")
+            UserDefaults.standard.setValue(nil, forKey: "userID")
+
+            let storyBoard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "Main") as! OpeningPageViewController
+            self.present(newViewController, animated: true, completion: nil)
+        }
+        catch {
+            print("Failed to log out")
+        }
+    }
+    
     
     
     @IBAction func userDuty(_ sender: Any) {
