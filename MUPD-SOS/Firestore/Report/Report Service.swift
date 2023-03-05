@@ -54,7 +54,7 @@ class ReportService {
     func observeReports () {
         
         fsCollection.addSnapshotListener { [self] (querySnapshot, err) in
-           
+            mupdreports.removeAll()
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {

@@ -42,21 +42,7 @@ class PinDropDetailViewController: UIViewController, UITableViewDelegate, UITabl
         print ("get cell")
         let cell = tableView.dequeueReusableCell(withIdentifier: pinDropCellReuseIdentifier, for: indexPath)
     switch indexPath.row {
-        /*
-         var userID: String
-         var pinDropId: String
-         var userCoordinateLat: Double
-         var userCoordinateLong: Double
-         var reportedLocationLat: Double
-         var reportedLocationLong: Double
-         var identity:String
-         var acceptedNotif: Bool      //Array<Int>
-         var importance: Int
-         var notifName: String
-         var state: Bool
-         var submit: Bool
-         var timestamp: String
-         */
+
     case 0:
         cell.textLabel?.text = "Emergency Name"
         cell.detailTextLabel?.text = selectedItem.notifName

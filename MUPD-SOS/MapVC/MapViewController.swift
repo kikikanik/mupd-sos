@@ -164,6 +164,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                                               
             notificationAnnotations.append(pin)
         }
+        mapView.reloadInputViews() //reload data
         mapView.addAnnotations(notificationAnnotations)
     }
     

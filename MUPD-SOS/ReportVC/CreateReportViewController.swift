@@ -44,11 +44,6 @@ class CreateReportViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       
-        
-        reportService.observeReports()
-        
     }
     
     func alertReportError(message: String = "Please enter all information before posting a report! ") {

@@ -20,10 +20,6 @@ class MUPDProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(mupdprofilesReceived), name: Notification.Name(rawValue:  kSOSMUPDProfilesChanged), object: nil)
-        
-       mupdprofileService.observeMUPDProfiles()
-        
         UITextField.textDidEndEditingNotification
     }
     
@@ -90,19 +86,6 @@ class MUPDProfileViewController: UIViewController {
                 //Saving profile info in the text fields -> NOT WORKING!!!!!!
                 //UserDefaults.standard.set(saveInfo.isSelected, forKey: "SaveProfile")
                     
-    }
-    
-    @objc
-    func mupdprofilesReceived() {
-        //every time theres new data, this will be called
-        //for loop through all notifs and display
-        mupdprofiles.removeAll()
-        
-        for mupdProfile in mupdprofileService.MUPDProfiles {
-            let mupdProfile = MUPDProfile(userID: userService.currentUser!.email, title: mupdprofileService.currentProfile!.title, fullName: mupdprofileService.currentProfile!.fullName, badge: mupdprofileService.currentProfile!.badge, onDuty: mupdprofileService.currentProfile!.onDuty)
-            
-             mupdprofiles.append(mupdProfile)
-        }
     }
     
 }

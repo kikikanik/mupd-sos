@@ -76,10 +76,10 @@ class MUPDProfileService {
     }
     
     //func here to get all the notifications from firestore
-    func observeMUPDProfiles () {
+    func observeMUPDProfiles() {
         
         fsCollection.addSnapshotListener { [self] (querySnapshot, err) in
-            
+            MUPDProfiles.removeAll()
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
@@ -96,7 +96,7 @@ class MUPDProfileService {
                         print("Error adding mupdprofile to array aMUPDProfile")
                     }
                 }
-                NotificationCenter.default.post(name: Notification.Name(rawValue: kSOSReportsChanged), object: self)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: kSOSMUPDProfilesChanged), object: self)
             }
         }
     }

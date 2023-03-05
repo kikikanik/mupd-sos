@@ -19,40 +19,34 @@ class ReportsViewController: UIViewController {
     var enteredState: Int = 0
     
     @IBOutlet var reportsTableView: UITableView!
-    
-    var selectedIndexPath: IndexPath?
+        
+    /*
+     The difference between viewDidAppear and viewDidLoad is that viewDidAppear is called every time you land on the screen while viewDidLoad is only called once which is when the app loads.
+     */
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         reportsTableView.delegate = self
         reportsTableView.dataSource = self
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(reportsReceived), name: Notification.Name(rawValue: kSOSReportsChanged), object: nil)
-        
+       // reports.removeAll()
         reportService.observeReports()
-        
     }
     
     @objc
     func reportsReceived() {
         reports.removeAll()
         for report in reportService.mupdreports {
-            let report = Report(reportID: "userService.currentUser!.email", emergencyType: report.emergencyType, message: report.message, postedBy: report.postedBy, timestamp: report.timestamp)
-            
-            /*
-             let report = Report(reportID: userService.currentUser!.email, emergencyType: report.emergencyType, message: report.message, postedBy: report.postedBy, timestamp: report.timestamp)
-             */
+            let report = Report(reportID: userService.currentUser!.email, emergencyType: report.emergencyType, message: report.message, postedBy: report.postedBy, timestamp: report.timestamp)
+
             reports.append(report)
         }
-        
         reportsTableView.reloadData()
-        print("(7) this is all reports:" )
+        print("this is all reports:" )
         print(reports)
     }
     
@@ -129,18 +123,4 @@ extension ReportsViewController: UITableViewDataSource {
         return cell
         
         }
-    
-    /*
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-     {
-         let tableViewCell = tableView.dequeueReusableCell(withIdentifier: "tableViewCellID") as! TableViewCell
-         
-         let thisShape = shapeList[indexPath.row]
-         
-         tableViewCell.shapeName.text = thisShape.id + " " + thisShape.name
-         tableViewCell.shapeImage.image = UIImage(named: thisShape.imageName)
-         
-         return tableViewCell
-     }
-     */
 }
