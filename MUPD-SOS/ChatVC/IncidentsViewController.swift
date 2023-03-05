@@ -34,7 +34,7 @@ class IncidentsViewController: UIViewController, UITableViewDelegate, UITableVie
     func notificationsReceived() {
         incidents.removeAll()
         for incident in pindropService.notifications {
-            let incident = PinDrop(acceptedNotif: incident.acceptedNotif, identity: incident.identity, importance: incident.importance, userCoordinateLat: incident.userCoordinateLat, pinDropId: userService.currentUser!.email, userCoordinateLong: incident.userCoordinateLong, reportedLocationLat: incident.reportedLocationLat, reportedLocationLong: incident.reportedLocationLong, notifName: incident.notifName, state: incident.state, submit: incident.submit, timestamp: incident.timestamp, userID: userService.currentUser!.email)
+            let incident = PinDrop(acceptedNotif: incident.acceptedNotif, identity: incident.identity, importance: incident.importance, userCoordinateLat: incident.userCoordinateLat, pinDropId: incident.pinDropId, userCoordinateLong: incident.userCoordinateLong, reportedLocationLat: incident.reportedLocationLat, reportedLocationLong: incident.reportedLocationLong, notifName: incident.notifName, state: incident.state, submit: incident.submit, timestamp: incident.timestamp, userID: incident.userID)
             
             //Report(reportID: userService.currentUser!.email, emergencyType: report.emergencyType, message: report.message, postedBy: report.postedBy, timestamp: report.timestamp)
 

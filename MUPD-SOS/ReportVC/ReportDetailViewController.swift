@@ -7,17 +7,9 @@
 
 import UIKit
 
-class ReportDetailViewController: UIViewController {
+class ReportDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-   // @IBOutlet weak var name: UILabel!
-  //  @IBOutlet weak var image: UIImageView!
-    @IBOutlet weak var emergencyTitle: UILabel!
-    
-    @IBOutlet weak var postedBy: UILabel!
-    
-    @IBOutlet weak var timestamp: UILabel!
-    
-    @IBOutlet weak var message: UITextView!
+    @IBOutlet weak var reportList: UITableView!
     
     var selectedReport : Report!
     
@@ -25,13 +17,38 @@ class ReportDetailViewController: UIViewController {
     {
         super.viewDidLoad()
         
-        emergencyTitle.text = selectedReport.emergencyType
-        postedBy.text = selectedReport.postedBy
-        timestamp.text = selectedReport.timestamp
-        message.text = selectedReport.message
-        
-        //name.text = selectedReport.id + " - " + selectedShape.name
-        //image.image = UIImage(named: selectedShape.imageName)
+        self.title = selectedReport.emergencyType.capitalized
+        // Make the VC delegate and datasource
+        reportList.dataSource = self
+        reportList.delegate = self
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reportCell", for: indexPath)
+        
+        switch(indexPath.row) {
+        case 0:
+            cell.textLabel?.text = "Emergency Title: "
+            cell.detailTextLabel?.text = selectedReport?.emergencyType
+        case 1:
+            cell.textLabel?.text = "Posted By: "
+            cell.detailTextLabel?.text = selectedReport?.postedBy
+        case 2:
+            cell.textLabel?.text = "Time Posted: "
+            cell.detailTextLabel?.text = selectedReport?.timestamp
+        case 3:
+            cell.textLabel?.text = "Message: "
+            cell.detailTextLabel?.text = selectedReport?.message
+
+        default:
+            cell.textLabel?.text = "?"
+            cell.detailTextLabel?.text = "?"
+        }
+        
+        return cell
+    }
 }
