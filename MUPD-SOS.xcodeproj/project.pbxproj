@@ -36,6 +36,7 @@
 		D888371129B1749B0013176B /* PinDropDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888371029B1749B0013176B /* PinDropDetailViewController.swift */; };
 		D888371629B1826E0013176B /* ReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888371529B1826E0013176B /* ReportsViewController.swift */; };
 		D888371829B1827F0013176B /* CreateReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888371729B1827F0013176B /* CreateReportViewController.swift */; };
+		D888372229B4D6940013176B /* ReportDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888372129B4D6940013176B /* ReportDetailViewController.swift */; };
 		D8A6799229AE60B800A65C35 /* OpeningPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A6799129AE60B800A65C35 /* OpeningPageViewController.swift */; };
 		D8A6799429AE615400A65C35 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A6799329AE615400A65C35 /* LoginViewController.swift */; };
 		D8A6799629AE616100A65C35 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A6799529AE616100A65C35 /* RegisterViewController.swift */; };
@@ -68,6 +69,7 @@
 		D888371029B1749B0013176B /* PinDropDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinDropDetailViewController.swift; sourceTree = "<group>"; };
 		D888371529B1826E0013176B /* ReportsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsViewController.swift; sourceTree = "<group>"; };
 		D888371729B1827F0013176B /* CreateReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReportViewController.swift; sourceTree = "<group>"; };
+		D888372129B4D6940013176B /* ReportDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDetailViewController.swift; sourceTree = "<group>"; };
 		D8A6799129AE60B800A65C35 /* OpeningPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningPageViewController.swift; sourceTree = "<group>"; };
 		D8A6799329AE615400A65C35 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D8A6799529AE616100A65C35 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 			children = (
 				D888371529B1826E0013176B /* ReportsViewController.swift */,
 				D888371729B1827F0013176B /* CreateReportViewController.swift */,
+				D888372129B4D6940013176B /* ReportDetailViewController.swift */,
 			);
 			path = ReportVC;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				D86D1AE529A3E8510092A5D7 /* User.swift in Sources */,
 				D8A6799629AE616100A65C35 /* RegisterViewController.swift in Sources */,
 				D86D1AF329A3E8960092A5D7 /* Pin Drop Service.swift in Sources */,
+				D888372229B4D6940013176B /* ReportDetailViewController.swift in Sources */,
 				D888371829B1827F0013176B /* CreateReportViewController.swift in Sources */,
 				D86D1AFF29A3F3DF0092A5D7 /* NotificationAnnotation.swift in Sources */,
 				D8A6799229AE60B800A65C35 /* OpeningPageViewController.swift in Sources */,

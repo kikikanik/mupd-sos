@@ -14,6 +14,8 @@ class CreateReportViewController: UIViewController {
     let reportService = ReportService.shared
     
     var report: Report?
+    var mupdProfiles : [MUPDProfile] = []
+    
     
     @IBOutlet weak var EmergencyType: UITextField!
     
@@ -36,12 +38,17 @@ class CreateReportViewController: UIViewController {
         report = Report(reportID: userService.currentUser!.email, emergencyType: EmergencyType, message: Message, postedBy: "MUPD", timestamp: convertTimestamp())
         reportService.addReportInfo(currentUser: report!)
         print("REPORT SAVED TO DATABASE!")
+        
+        confirmAlert()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+       
+        
+        reportService.observeReports()
+        
     }
     
     func alertReportError(message: String = "Please enter all information before posting a report! ") {
@@ -56,5 +63,17 @@ class CreateReportViewController: UIViewController {
         dateFormatter.dateFormat = "MM-dd-yyyy HH:mm:ss"
         let currentTime = dateFormatter.string(from: date)
         return currentTime
+    }
+    
+    func confirmAlert() {
+        let report = UIAlertController(title: "MUPD Report", message: "Report Reported", preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+            
+            // Code in this block will trigger when OK button is tapped.
+            print("Ok button tapped");
+            self.navigationController?.popViewController(animated: true)
+        }
+        report.addAction(OKAction)
+        self.present(report, animated: true, completion:nil)
     }
 }

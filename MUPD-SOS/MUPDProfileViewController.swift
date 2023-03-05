@@ -7,36 +7,23 @@
 
 import UIKit
 
-protocol JsonEncoding where Self: Encodable{}
-
-extension JsonEncoding {
-    func encode(using encoder: JSONEncoder) throws -> Data {
-        try encoder.encode(self)
-    }
-}
-extension String: JsonEncoding{}
-
-extension Dictionary where Value == JsonEncoding {
-    func encode(using encoder: JSONEncoder) throws -> [Key: String] {
-        try compactMapValues {
-            try String(data: $0.encode(using: encoder), encoding: .utf8)
-        }
-    }
-
-}
-
 class MUPDProfileViewController: UIViewController {
 
     let userService = UserService.shared
     let mupdprofileService = MUPDProfileService.shared
     
     var mupdprofile: MUPDProfile?
+    var mupdprofiles: [MUPDProfile] = []
     
     var selectDutyType = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(mupdprofilesReceived), name: Notification.Name(rawValue:  kSOSMUPDProfilesChanged), object: nil)
+        
+       mupdprofileService.observeMUPDProfiles()
+        
         UITextField.textDidEndEditingNotification
     }
     
@@ -86,14 +73,25 @@ class MUPDProfileViewController: UIViewController {
         
         mupdprofile = MUPDProfile(userID: userService.currentUser!.email, title : usertitle, fullName : fullname, badge : badge, onDuty: userDuty)
                 
-                mupdprofileService.addMUPDProfileInfo(currentUser: mupdprofile!)
-                print("PROFILE SAVED TO DATABASE!")
+        mupdprofileService.addMUPDProfileInfo(currentUser: mupdprofile!)
+        print("PROFILE SAVED TO DATABASE!")
                 
                 //Saving profile info in the text fields -> NOT WORKING!!!!!!
                 //UserDefaults.standard.set(saveInfo.isSelected, forKey: "SaveProfile")
-            
-              //  performSegue(withIdentifier: "saveProfile", sender: nil)
+                    
+    }
+    
+    @objc
+    func mupdprofilesReceived() {
+        //every time theres new data, this will be called
+        //for loop through all notifs and display
+        mupdprofiles.removeAll()
         
+        for mupdProfile in mupdprofileService.MUPDProfiles {
+            let mupdProfile = MUPDProfile(userID: userService.currentUser!.email, title: mupdprofileService.currentProfile!.title, fullName: mupdprofileService.currentProfile!.fullName, badge: mupdprofileService.currentProfile!.badge, onDuty: mupdprofileService.currentProfile!.onDuty)
+            
+             mupdprofiles.append(mupdProfile)
+        }
     }
     
 }
