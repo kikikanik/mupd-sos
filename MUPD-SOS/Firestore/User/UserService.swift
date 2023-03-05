@@ -23,8 +23,6 @@ class UserService {
         
     }
     
-    
-    
     func addUser(sosUser: User, docID: String) {
         
         fsCollection.document(docID).setData(sosUser.asDictionary()) { err in

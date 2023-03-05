@@ -205,6 +205,7 @@
 				D86D1AFE29A3F3DF0092A5D7 /* NotificationAnnotation.swift */,
 				D888370E29B174490013176B /* AnnotationTypes.swift */,
 				D888371029B1749B0013176B /* PinDropDetailViewController.swift */,
+				D888370C29B10BC20013176B /* MUPDProfileViewController.swift */,
 				D8163DEC29B4F392003A25CC /* OnDutyViewController.swift */,
 			);
 			path = MapVC;
@@ -239,7 +240,6 @@
 				D8A6799129AE60B800A65C35 /* OpeningPageViewController.swift */,
 				D8A6799329AE615400A65C35 /* LoginViewController.swift */,
 				D8A6799529AE616100A65C35 /* RegisterViewController.swift */,
-				D888370C29B10BC20013176B /* MUPDProfileViewController.swift */,
 			);
 			name = "Log InVC";
 			sourceTree = "<group>";

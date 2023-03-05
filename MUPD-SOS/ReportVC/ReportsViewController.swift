@@ -108,8 +108,10 @@ extension ReportsViewController: UITableViewDataSource {
              cell.imageView?.image = UIImage(named: "carproblem")
              case "Weather":
              cell.imageView?.image = UIImage(named: "weather")
+             case "Inclement Weather":
+             cell.imageView?.image = UIImage(named: "weather")
              default:
-            cell.imageView?.image = UIImage(named: "mupdsos")
+             cell.imageView?.image = UIImage(named: "mupdsos")
              }
          
         return cell
