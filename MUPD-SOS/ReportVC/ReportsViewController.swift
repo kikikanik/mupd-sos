@@ -40,7 +40,7 @@ class ReportsViewController: UIViewController {
     func reportsReceived() {
         reports.removeAll()
         for report in reportService.mupdreports {
-            let report = Report(reportID: userService.currentUser!.email, emergencyType: report.emergencyType, message: report.message, postedBy: report.postedBy, timestamp: report.timestamp)
+            let report = Report(reportID: report.reportID, emergencyType: report.emergencyType, message: report.message, postedBy: report.postedBy, timestamp: report.timestamp)
 
             reports.append(report)
         }
@@ -99,25 +99,18 @@ extension ReportsViewController: UITableViewDataSource {
         let thisReport = reports[indexPath.row]
         
         cell.emergencyType?.text = thisReport.emergencyType
-        cell.postedBy?.text = thisReport.postedBy
-        cell.sourceImage.image = UIImage(named: "mulogo")
-
-            /*
-             /if let reportData = reportService.reports[indexPath.section] {
-                 let report = reports[indexPath.row]
-                 cell.textLabel?.text = report.emergencyType
-                 //cell.postedByLabel?.text = "Posted By: " + report.postedBy!
-             switch (report.emergencyType) {
-             case "Medical":
-             cell.imageView?.image = UIImage(named: "medical")
+        cell.postedByLabel?.text = thisReport.postedBy
+        
+        switch (thisReport.emergencyType) {
+            case "Health":
+                cell.imageView?.image = UIImage(named: "medical")
              case "Traffic":
              cell.imageView?.image = UIImage(named: "carproblem")
              case "Weather":
              cell.imageView?.image = UIImage(named: "weather")
              default:
-             cell.imageView?.image = UIImage(systemName: "questionmark.square.dashed")
+            cell.imageView?.image = UIImage(named: "mupdsos")
              }
-             */
          
         return cell
         

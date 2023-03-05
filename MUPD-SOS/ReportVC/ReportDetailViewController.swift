@@ -17,7 +17,7 @@ class ReportDetailViewController: UIViewController, UITableViewDelegate, UITable
     {
         super.viewDidLoad()
         
-        self.title = selectedReport.emergencyType.capitalized
+        self.title = selectedReport.emergencyType.capitalized + " Report"
         // Make the VC delegate and datasource
         reportList.dataSource = self
         reportList.delegate = self
@@ -32,7 +32,7 @@ class ReportDetailViewController: UIViewController, UITableViewDelegate, UITable
         
         switch(indexPath.row) {
         case 0:
-            cell.textLabel?.text = "Emergency Title: "
+            cell.textLabel?.text = "Title: "
             cell.detailTextLabel?.text = selectedReport?.emergencyType
         case 1:
             cell.textLabel?.text = "Posted By: "
@@ -43,7 +43,6 @@ class ReportDetailViewController: UIViewController, UITableViewDelegate, UITable
         case 3:
             cell.textLabel?.text = "Message: "
             cell.detailTextLabel?.text = selectedReport?.message
-
         default:
             cell.textLabel?.text = "?"
             cell.detailTextLabel?.text = "?"

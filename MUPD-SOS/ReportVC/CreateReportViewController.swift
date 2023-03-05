@@ -35,7 +35,7 @@ class CreateReportViewController: UIViewController {
             alertReportError()
             return
         }
-        report = Report(reportID: userService.currentUser!.email, emergencyType: EmergencyType, message: Message, postedBy: "MUPD", timestamp: convertTimestamp())
+        report = Report(reportID: " ", emergencyType: EmergencyType, message: Message, postedBy: "MUPD", timestamp: convertTimestamp())
         reportService.addReportInfo(currentUser: report!)
         print("REPORT SAVED TO DATABASE!")
         
