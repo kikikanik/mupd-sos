@@ -44,6 +44,16 @@ class MUPDProfileViewController: UIViewController {
             present(alert, animated: true)
         }
     
+    func confirmAlert() {
+        let profile = UIAlertController(title: "MUPD Profile", message: "Profile Updated!", preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+            print("Ok button tapped");
+            self.navigationController?.popViewController(animated: true)
+        }
+        profile.addAction(OKAction)
+        self.present(profile, animated: true, completion:nil)
+    }
+    
     @IBOutlet weak var saveInfo: UIBarButtonItem!
     
     @IBAction func SaveProfile(_ sender: Any) {
@@ -75,7 +85,8 @@ class MUPDProfileViewController: UIViewController {
                 
         mupdprofileService.addMUPDProfileInfo(currentUser: mupdprofile!)
         print("PROFILE SAVED TO DATABASE!")
-                
+        
+        confirmAlert()
                 //Saving profile info in the text fields -> NOT WORKING!!!!!!
                 //UserDefaults.standard.set(saveInfo.isSelected, forKey: "SaveProfile")
                     

@@ -68,8 +68,6 @@ class CreateReportViewController: UIViewController {
     func confirmAlert() {
         let report = UIAlertController(title: "MUPD Report", message: "Report Reported", preferredStyle: .alert)
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
-            
-            // Code in this block will trigger when OK button is tapped.
             print("Ok button tapped");
             self.navigationController?.popViewController(animated: true)
         }
