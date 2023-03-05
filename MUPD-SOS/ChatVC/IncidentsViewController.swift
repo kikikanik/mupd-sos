@@ -60,4 +60,28 @@ class IncidentsViewController: UIViewController, UITableViewDelegate, UITableVie
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("you tapped me!")
+        self.performSegue(withIdentifier: "incidentSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+        if(segue.identifier == "incidentSegue")
+        {
+            let indexPath = self.incidentsTableView.indexPathForSelectedRow!
+            
+            let tableViewDetail = segue.destination as? IncidentDetailViewController
+            
+            let selectedIncident = incidents[indexPath.row]
+            
+            tableViewDetail!.selectedIncident = selectedIncident
+            
+            self.incidentsTableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+    
 }

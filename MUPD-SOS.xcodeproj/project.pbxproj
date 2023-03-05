@@ -43,6 +43,7 @@
 		D8A6799229AE60B800A65C35 /* OpeningPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A6799129AE60B800A65C35 /* OpeningPageViewController.swift */; };
 		D8A6799429AE615400A65C35 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A6799329AE615400A65C35 /* LoginViewController.swift */; };
 		D8A6799629AE616100A65C35 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A6799529AE616100A65C35 /* RegisterViewController.swift */; };
+		D8DD0C8429B532C400634014 /* IncidentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DD0C8329B532C400634014 /* IncidentDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,7 @@
 		D8A6799129AE60B800A65C35 /* OpeningPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningPageViewController.swift; sourceTree = "<group>"; };
 		D8A6799329AE615400A65C35 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D8A6799529AE616100A65C35 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		D8DD0C8329B532C400634014 /* IncidentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				D8163DEE29B50AD1003A25CC /* IncidentsViewController.swift */,
+				D8DD0C8329B532C400634014 /* IncidentDetailViewController.swift */,
 			);
 			path = ChatVC;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				D86D1ABE29A3E5A70092A5D7 /* AppDelegate.swift in Sources */,
 				D86D1AF129A3E8890092A5D7 /* Pin Drop.swift in Sources */,
 				D888371629B1826E0013176B /* ReportsViewController.swift in Sources */,
+				D8DD0C8429B532C400634014 /* IncidentDetailViewController.swift in Sources */,
 				D888371129B1749B0013176B /* PinDropDetailViewController.swift in Sources */,
 				D86D1AED29A3E8720092A5D7 /* Report.swift in Sources */,
 				D86D1AEF29A3E87B0092A5D7 /* Report Service.swift in Sources */,
