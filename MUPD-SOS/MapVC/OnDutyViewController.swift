@@ -39,7 +39,7 @@ class OnDutyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         ondutytableView.reloadData()
-        print("(9) this is all mupdProfiles:" )
+        print("this is all mupdProfiles:" )
         print(mupdprofiles)
     }
     
@@ -57,10 +57,6 @@ class OnDutyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.textLabel?.text = thisMUPDProfile.fullName
         cell.detailTextLabel?.text = thisMUPDProfile.onDuty
         
-        /*
-        cell.emergencyType?.text = thisReport.emergencyType
-        cell.postedBy?.text = thisReport.postedBy
-         */
         return cell
     }
 

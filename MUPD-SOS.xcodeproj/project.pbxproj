@@ -11,6 +11,7 @@
 		D807E9DB29AE66E300F46311 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D807E9DA29AE66E300F46311 /* ProfileService.swift */; };
 		D8163DEB29B4E624003A25CC /* ReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8163DEA29B4E624003A25CC /* ReportTableViewCell.swift */; };
 		D8163DED29B4F392003A25CC /* OnDutyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8163DEC29B4F392003A25CC /* OnDutyViewController.swift */; };
+		D8163DEF29B50AD1003A25CC /* IncidentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8163DEE29B50AD1003A25CC /* IncidentsViewController.swift */; };
 		D86D1ABE29A3E5A70092A5D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D1ABD29A3E5A70092A5D7 /* AppDelegate.swift */; };
 		D86D1AC029A3E5A70092A5D7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D1ABF29A3E5A70092A5D7 /* SceneDelegate.swift */; };
 		D86D1AC529A3E5A70092A5D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D86D1AC329A3E5A70092A5D7 /* Main.storyboard */; };
@@ -49,6 +50,7 @@
 		D807E9DA29AE66E300F46311 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		D8163DEA29B4E624003A25CC /* ReportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTableViewCell.swift; sourceTree = "<group>"; };
 		D8163DEC29B4F392003A25CC /* OnDutyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDutyViewController.swift; sourceTree = "<group>"; };
+		D8163DEE29B50AD1003A25CC /* IncidentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentsViewController.swift; sourceTree = "<group>"; };
 		D86D1ABA29A3E5A70092A5D7 /* MUPD-SOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MUPD-SOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D86D1ABD29A3E5A70092A5D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D86D1ABF29A3E5A70092A5D7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +106,14 @@
 			path = MUSOSProfile;
 			sourceTree = "<group>";
 		};
+		D8163DF029B50AD6003A25CC /* ChatVC */ = {
+			isa = PBXGroup;
+			children = (
+				D8163DEE29B50AD1003A25CC /* IncidentsViewController.swift */,
+			);
+			path = ChatVC;
+			sourceTree = "<group>";
+		};
 		D86D1AB129A3E5A70092A5D7 = {
 			isa = PBXGroup;
 			children = (
@@ -124,8 +134,9 @@
 			isa = PBXGroup;
 			children = (
 				D86D1AD129A3E5B20092A5D7 /* App Files */,
-				D888371429B1823C0013176B /* ReportVC */,
 				D8A6799029AE60A000A65C35 /* Log InVC */,
+				D8163DF029B50AD6003A25CC /* ChatVC */,
+				D888371429B1823C0013176B /* ReportVC */,
 				D888371229B17D5F0013176B /* MapVC */,
 				D888371329B182110013176B /* Firestore */,
 				D86D1AC329A3E5A70092A5D7 /* Main.storyboard */,
@@ -317,6 +328,7 @@
 				D86D1AF929A3EA4F0092A5D7 /* Notification Keys.swift in Sources */,
 				D807E9DB29AE66E300F46311 /* ProfileService.swift in Sources */,
 				D807E9D929AE66CF00F46311 /* Profile.swift in Sources */,
+				D8163DEF29B50AD1003A25CC /* IncidentsViewController.swift in Sources */,
 				D86D1ABE29A3E5A70092A5D7 /* AppDelegate.swift in Sources */,
 				D86D1AF129A3E8890092A5D7 /* Pin Drop.swift in Sources */,
 				D888371629B1826E0013176B /* ReportsViewController.swift in Sources */,

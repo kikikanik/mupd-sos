@@ -183,7 +183,7 @@
         <!--Incident List-->
         <scene sceneID="pxq-6l-TOn">
             <objects>
-                <viewController id="0s9-y3-Q2x" sceneMemberID="viewController">
+                <viewController id="0s9-y3-Q2x" customClass="IncidentsViewController" customModule="MUPD_SOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aLO-Ze-tDt">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -192,7 +192,7 @@
                                 <rect key="frame" x="0.0" y="56" width="393" height="644"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="xht-R0-Szm" detailTextLabel="S1H-G9-f0i" style="IBUITableViewCellStyleValue1" id="8dH-Ba-Bkm">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="incidentCell" textLabel="xht-R0-Szm" detailTextLabel="S1H-G9-f0i" style="IBUITableViewCellStyleValue1" id="8dH-Ba-Bkm">
                                         <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8dH-Ba-Bkm" id="3Yg-Mg-0gj">
@@ -229,6 +229,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Incident List" id="t5e-ua-ht7"/>
+                    <connections>
+                        <outlet property="incidentsTableView" destination="xLh-hb-vd6" id="bSX-e0-1jS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f95-oT-08A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -378,7 +381,7 @@
             </objects>
             <point key="canvasLocation" x="1842" y="2796"/>
         </scene>
-        <!--Create Report View Controller-->
+        <!--Create Report-->
         <scene sceneID="ylY-UN-cmQ">
             <objects>
                 <viewController id="M68-lO-2jB" customClass="CreateReportViewController" customModule="MUPD_SOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -402,7 +405,7 @@
                         <viewLayoutGuide key="safeArea" id="dt2-83-F4V"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Ffw-WJ-u5X">
+                    <navigationItem key="navigationItem" title="Create Report" id="Ffw-WJ-u5X">
                         <barButtonItem key="rightBarButtonItem" title="upload" image="square.and.arrow.up" catalog="system" id="yrq-kw-PF4">
                             <connections>
                                 <action selector="uploadReport:" destination="M68-lO-2jB" id="JJu-n9-RIN"/>

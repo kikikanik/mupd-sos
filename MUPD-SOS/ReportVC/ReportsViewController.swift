@@ -33,7 +33,6 @@ class ReportsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(reportsReceived), name: Notification.Name(rawValue: kSOSReportsChanged), object: nil)
-       // reports.removeAll()
         reportService.observeReports()
     }
     
