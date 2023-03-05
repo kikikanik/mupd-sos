@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D807E9D929AE66CF00F46311 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D807E9D829AE66CF00F46311 /* Profile.swift */; };
 		D807E9DB29AE66E300F46311 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D807E9DA29AE66E300F46311 /* ProfileService.swift */; };
+		D8163DEB29B4E624003A25CC /* ReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8163DEA29B4E624003A25CC /* ReportTableViewCell.swift */; };
 		D86D1ABE29A3E5A70092A5D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D1ABD29A3E5A70092A5D7 /* AppDelegate.swift */; };
 		D86D1AC029A3E5A70092A5D7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D1ABF29A3E5A70092A5D7 /* SceneDelegate.swift */; };
 		D86D1AC529A3E5A70092A5D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D86D1AC329A3E5A70092A5D7 /* Main.storyboard */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		D807E9D829AE66CF00F46311 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		D807E9DA29AE66E300F46311 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
+		D8163DEA29B4E624003A25CC /* ReportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTableViewCell.swift; sourceTree = "<group>"; };
 		D86D1ABA29A3E5A70092A5D7 /* MUPD-SOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MUPD-SOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D86D1ABD29A3E5A70092A5D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D86D1ABF29A3E5A70092A5D7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				D888371529B1826E0013176B /* ReportsViewController.swift */,
 				D888371729B1827F0013176B /* CreateReportViewController.swift */,
 				D888372129B4D6940013176B /* ReportDetailViewController.swift */,
+				D8163DEA29B4E624003A25CC /* ReportTableViewCell.swift */,
 			);
 			path = ReportVC;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				D888370F29B174490013176B /* AnnotationTypes.swift in Sources */,
 				D86D1AE729A3E8590092A5D7 /* UserService.swift in Sources */,
 				D888370929AFC5EA0013176B /* MUPDProfileService.swift in Sources */,
+				D8163DEB29B4E624003A25CC /* ReportTableViewCell.swift in Sources */,
 				D8A6799429AE615400A65C35 /* LoginViewController.swift in Sources */,
 				D86D1AC029A3E5A70092A5D7 /* SceneDelegate.swift in Sources */,
 				D86D1AE529A3E8510092A5D7 /* User.swift in Sources */,
