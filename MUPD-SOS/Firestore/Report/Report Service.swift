@@ -36,13 +36,16 @@ class ReportService {
             }
         }
     }
-    
-    func addReportInfo(currentUser: Report) {
-        let uid = userService.currentUser!.documentID!
-        print ("UNIQUE IDENTIFIER OF USER: \(uid)")
-        self.addReport(report: currentUser, docID: uid)
+  /*
+    func addReportInfo(report: Report) {
+        //let uid = userService.currentUser!.documentID!
+        let newDocumentID = UUID().uuidString
+        //let uid = report.reportID
+        print ("UNIQUE IDENTIFIER OF Report: \(newDocumentID)")
+       // self.addReport(report: currentUser, docID: uid)
+        self.addReport(report: report, docID: newDocumentID)
     }
-    
+    */
     func getReportInfo(forReportId id: String) -> Report? {
         if let index = (mupdreports).firstIndex(where: {$0.reportID == id}) {
             return mupdreports[index]

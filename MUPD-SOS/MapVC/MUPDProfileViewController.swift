@@ -105,8 +105,6 @@ class MUPDProfileViewController: UIViewController {
         print("PROFILE SAVED TO DATABASE!")
         
         confirmAlert()
-                //Saving profile info in the text fields -> NOT WORKING!!!!!!
-                //UserDefaults.standard.set(saveInfo.isSelected, forKey: "SaveProfile")
                     
     }
     

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class CreateReportViewController: UIViewController {
     
@@ -14,8 +15,9 @@ class CreateReportViewController: UIViewController {
     let reportService = ReportService.shared
     
     var report: Report?
-    var mupdProfiles : [MUPDProfile] = []
+    var mupdProfile: MUPDProfile?
     
+    let db = Firestore.firestore()
     
     @IBOutlet weak var EmergencyType: UITextField!
     
@@ -35,8 +37,13 @@ class CreateReportViewController: UIViewController {
             alertReportError()
             return
         }
-        report = Report(reportID: userService.currentUser!.documentID!, emergencyType: EmergencyType, message: Message, postedBy: "MUPD", timestamp: convertTimestamp())
-        reportService.addReportInfo(currentUser: report!)
+        
+        let newDocumentID = UUID().uuidString
+        print ("UNIQUE IDENTIFIER OF Report: \(newDocumentID)")
+        let reportID = newDocumentID
+        
+        report = Report(reportID: reportID, emergencyType: EmergencyType, message: Message, postedBy: " ", timestamp: convertTimestamp())
+        reportService.addReport(report: report!, docID: report!.reportID)
         print("REPORT SAVED TO DATABASE!")
         
         confirmAlert()
