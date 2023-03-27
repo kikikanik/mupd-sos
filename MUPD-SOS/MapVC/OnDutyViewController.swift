@@ -51,7 +51,7 @@ class OnDutyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func mupdProfilesReceived() {
         mupdprofiles.removeAll()
         for mupdprofile in mupdprofileService.MUPDProfiles {
-            let mupdprofile = MUPDProfile(userID: userService.currentUser!.email, title: mupdprofile.title, fullName: mupdprofile.fullName, badge: mupdprofile.badge, onDuty: mupdprofile.onDuty)
+            let mupdprofile = MUPDProfile(userID: mupdprofile.userID, title: mupdprofile.title, fullName: mupdprofile.fullName, badge: mupdprofile.badge, onDuty: mupdprofile.onDuty)
             
             mupdprofiles.append(mupdprofile)
         }

@@ -178,7 +178,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             }
         }
     }
-    
+ 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
@@ -186,7 +186,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             if(segue.identifier == "notificationSegue") {
                 let dvc = segue.destination as! PinDropDetailViewController
                 dvc.selectedItem = pinDropService.getPinDropInfo(forPinDropId: selectedNotificationAnnotation!.pinDropID)
+                //try either one! idk man
+
+                print("pindrop id: ")
+                print(selectedNotificationAnnotation!.pinDropID)
             }
         }
     }
+
 }

@@ -15,3 +15,5 @@ let kSOSMUPDProfilesChanged = "edu.monmouth.s1278692.sosMUPDProfilesChanged"
 
 let kSOSProfilesChanged = "edu.monmouth.s1278692.sosProfilesChanged"
 
+let kSOSMessagesChanged = "edu.monmouth.s1278692.sosMessagesChanged"
+

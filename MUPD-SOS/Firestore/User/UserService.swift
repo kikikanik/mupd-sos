@@ -4,10 +4,10 @@
 //
 //  Created by Kinneret Kanik on 20/02/2023.
 //
+import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 import Firebase
-import Foundation
 
 class UserService {
     static let shared = UserService()   //declared share of UserService to other files
@@ -35,7 +35,6 @@ class UserService {
         }
     }
     
-    
     func findUser(withID id: String, completionHandler: @escaping (Bool, User?) -> Void) {
         
         var user: User?
@@ -56,38 +55,7 @@ class UserService {
         }
     }
     
-    
-    
-//    func parseEmail(sosUser: User, email: String, id: String) {
-//        //id = " "
-//        id = email.split(separator: "@", maxSplits: 2);
-//    }
-    
-    
-//    func parseEmail(withID id: String, email: String, sosUser: User) {
-//        var parseEmail = User.email
-//        parseEmail = email.split(separator: "@", maxSplits: 2)
-//    }
-    
-    
-
-    
-//    func parseEmail(withEmail email: String?, id: String) {
-//        User.email = email.split(separator: "@", maxSplits: 2)
-//
-//        email = email.split(separator: "@", maxSplits: 2)
-//       // _ = email[0]
-//        id = String(email[0])
-//    }
-//
-   
-    
-    
     //Firebase Authentication Methods
-    
-    
-   
-    
     func registerUser(email: String, password: String, currentUser: User, completionHandler: @escaping (Bool) -> Void) {
         print ("New Registered User: \(email) \(password)")  //print email and password of registered User in console!
         
@@ -105,15 +73,12 @@ class UserService {
             print ("UNIQUE IDENTIFIER OF USER: \(uid)")
             self?.addUser(sosUser: currentUser, docID: uid)
             completionHandler(true)
-            
-            
-            //get current User information!
-          //  authResult!.user.uid
+            //get current User information
             print ("UNIQUE IDENTIFIER FOR RETURNING USER: \(uid) WITH EMAIL \(email)")
             
             self?.findUser(withID: uid) {(result, currentUser) in
                 if result {
-                    self?.currentUser = currentUser
+                    self!.currentUser = currentUser
                     completionHandler(true)
                 }
                 else {
@@ -121,10 +86,7 @@ class UserService {
                 }
             }
         }
-        
-        
     }
-    
     
     func signIn(email: String, password: String, currentUser: User, completionHandler: @escaping (Bool) -> Void) {
         
@@ -134,14 +96,13 @@ class UserService {
                 completionHandler(false)
                 return
             }
-            
-            //get current User information!
+            //get current User information
             let uid = authResult!.user.uid
             print ("UNIQUE IDENTIFIER FOR RETURNING USER: \(uid) WITH EMAIL \(email)")
             
             self?.findUser(withID: uid) {(result, currentUser) in
                 if result {
-                    self?.currentUser = currentUser
+                    self!.currentUser = currentUser
                     completionHandler(true)
                 }
                 else {
@@ -150,19 +111,4 @@ class UserService {
             }
         }
     }
-    
-    // Function to update the Terms and Conditions field to TRUE, for either button "I accept" OR "I will Accept"
-    func updateTAC(currentUser: User) {
-        let uid = auth.currentUser!.uid
-        print("UNIQUE IDENTIFIER OF USER: \(uid)")
-        
-        fsCollection.document(uid).updateData([
-            "tac": currentUser.tac
-        ])
-        
-        print("DOCUMENT \(uid) TERMS AND CONDITIONS WAS UPDATED IN FIRESTORE!!")
-    }
-    
-    
-    
 }

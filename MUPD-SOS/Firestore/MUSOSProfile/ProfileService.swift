@@ -1,12 +1,13 @@
 //
 //  ProfileService.swift
-//  MUPD-SOS
+//  MU-SOSMainApp
 //
-//  Created by Kinneret Kanik on 28/02/2023.
 //
+
 import Foundation
 import FirebaseFirestore
 import Firebase
+
 
 class ProfileService {
     static let shared = ProfileService()
@@ -16,15 +17,13 @@ class ProfileService {
     let fsCollection = Firestore.firestore().collection("profile")  //initializing "profile" collection in Firestore
     
     var profile: [Profile] = []
-    var existingProfile: Profile?
+    var existingProfile: Profile!
     
     var currentUser: User!
     
     private init () {
         
     }
-    
-    
     
     func addProfile(profile: Profile, docID: String) {
         fsCollection.document(docID).setData(profile.createProfileDict()) {
@@ -58,9 +57,85 @@ class ProfileService {
         }
     }
         
-    func addProfileInfo(currentUser: Profile) {
+    func addProfileInfo(currentUser: Profile, completionHandler: @escaping (Bool) -> Void) {
+       
         let uid = userService.currentUser!.documentID!
+        
+        self.findProfile(withID: uid) {(result, existingProfile) in
+            if result {
+                self.existingProfile = existingProfile
+                completionHandler(true)
+            }
+            else {
+                completionHandler(false)
+            }
+        }
         print ("UNIQUE IDENTIFIER OF USER: \(uid)")
         self.addProfile(profile: currentUser, docID: uid)
     }
+    
+  /*
+    func getProfile(userID: String, completionHandler: @escaping (Bool) -> Void) {
+        let userID = existingProfile.userID
+        
+        self.findProfile(withID: userID) {(result, existingProfile) in
+            if result {
+                self.existingProfile = existingProfile
+                self.fsCollection.document(userID).getDocument {
+                    (document, error) in
+                    print("GETTING THIS DOCUMENT WITH ID: \(userID)")
+                    print("HERE IS THE PROFILE INFO!: \(existingProfile)")
+                    completionHandler(true)
+                }
+            }
+            else {
+                print("NO DOCUMENT TO GRAB!")
+                completionHandler(false)
+            }
+            
+        }
+        
+    }
+   */
+    
+    func getProfileInfo(profile: Profile) {
+        let uid = userService.currentUser!.documentID!
+        print("UNIQUE IDENTIFIER OF USER: \(uid)")
+    }
+    
+    func observeProfile(currentUser: Profile, completionHandler: @escaping (Bool) -> Void) {
+        
+        let uid = userService.currentUser!.documentID!
+        
+        fsCollection.addSnapshotListener { [self]
+            (querySnapshot, err) in
+            profile.removeAll()
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                    
+                    self.findProfile(withID: uid) {(result, existingProfile) in
+                        if result {
+                            self.existingProfile = existingProfile
+                            completionHandler(true)
+                        }
+                        else {
+                            completionHandler(false)
+                        }
+                    }
+                    
+                        self.profile.append(existingProfile!)
+                        print("PROFILES GRABBED \(existingProfile)")
+                        print(profile)
+
+                }
+                NotificationCenter.default.post(name: Notification.Name(rawValue: kSOSProfilesChanged), object: self)
+            }
+            
+        }
+    }
+    
 }

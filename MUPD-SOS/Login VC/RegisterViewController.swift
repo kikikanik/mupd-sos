@@ -7,9 +7,9 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+class RegisterPageViewController: UIViewController {
     
-    let userService = UserService.shared
+    let userService = UserService.shared //allowing a relationship between view controller and UserModel
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,13 +17,13 @@ class RegisterViewController: UIViewController {
         
     }
 
+    @IBOutlet weak var EmailInput: UITextField!
     
-    @IBOutlet var EmailInput: UITextField!
+    @IBOutlet weak var PasswordInput: UITextField!
     
-    @IBOutlet var PasswordInput: UITextField!
- 
+    
     @IBAction func RegisterButton(_ sender: UIButton) {
-
+        
         guard let email = EmailInput.text, !email.isEmpty else {
             print ("Email field is empty!")
             return
@@ -35,7 +35,7 @@ class RegisterViewController: UIViewController {
         }
         
         //ADD SEGMENTED CONTROL FOR USERTYPE!!!
-        let newUser = User(id: email, email: email, tac: true, userType: "MUPD", username: "");
+        let newUser = User(id: email, email: email, tac: true, userType: "MUPD");
         userService.registerUser(email: email, password: password, currentUser: newUser) { response in
             if (response) {
                 print("REGISTRATION SUCCESSFUL!!")

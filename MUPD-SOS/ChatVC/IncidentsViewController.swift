@@ -74,7 +74,7 @@ class IncidentsViewController: UIViewController, UITableViewDelegate, UITableVie
         {
             let indexPath = self.incidentsTableView.indexPathForSelectedRow!
             
-            let tableViewDetail = segue.destination as? IncidentDetailViewController
+            let tableViewDetail = segue.destination as? IncidentChatViewController
             
             let selectedIncident = incidents[indexPath.row]
             

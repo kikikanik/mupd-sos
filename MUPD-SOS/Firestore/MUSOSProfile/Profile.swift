@@ -1,9 +1,12 @@
 //
 //  Profile.swift
-//  MUPD-SOS
+//  MU-SOSMainApp
 //
-//  Created by Kinneret Kanik on 28/02/2023.
+//  Created by Amanda Gallaro on 12/19/22.
 //
+
+import Foundation
+import UIKit
 
 struct Profile: Codable {
     //var documentID: String?

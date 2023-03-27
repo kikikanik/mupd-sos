@@ -18,6 +18,7 @@ class CreateReportViewController: UIViewController {
     var mupdProfile: MUPDProfile?
     
     let db = Firestore.firestore()
+    var postedBy = " "
     
     @IBOutlet weak var EmergencyType: UITextField!
     
@@ -42,10 +43,21 @@ class CreateReportViewController: UIViewController {
         print ("UNIQUE IDENTIFIER OF Report: \(newDocumentID)")
         let reportID = newDocumentID
         
-        report = Report(reportID: reportID, emergencyType: EmergencyType, message: Message, postedBy: " ", timestamp: convertTimestamp())
-        reportService.addReport(report: report!, docID: report!.reportID)
-        print("REPORT SAVED TO DATABASE!")
-        
+        mupdprofileService.getMUPDProfile(docID: userService.currentUser!.email) { [self] response in
+            if (response) {
+                postedBy = self.mupdprofileService.existingMUPDProfile.title + " " + self.mupdprofileService.existingMUPDProfile.fullName
+                print("postedBy Field: ")
+                print(postedBy)
+                print(response)
+            }
+            else {
+                print("NO EXISTING PROFILE TO SHOW!!!")
+            }
+            
+            report = Report(reportID: reportID, emergencyType: EmergencyType, message: Message, postedBy: postedBy, timestamp: convertTimestamp())
+            reportService.addReport(report: report!, docID: report!.reportID)
+            print("REPORT SAVED TO DATABASE!")
+        }
         confirmAlert()
     }
     

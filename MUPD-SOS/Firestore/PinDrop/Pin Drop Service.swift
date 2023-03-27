@@ -18,43 +18,39 @@ class PinDropService {
     let userService = UserService.shared
     
     let fsCollection = Firestore.firestore().collection("notification")
+   
+    var pinDrop: PinDrop?
+    var notifications: [PinDrop] = []
     
-    //njCountiesNschools
-    var notificationsWTypes: [String: [PinDrop]] = ["sosENotifications": [], "sosNENotifications": [],
-                                                  "sosMNotifications": []]
-    var notifications:[PinDrop] = []
-    
-    private init () {
-        //mapNotificationsToType()
-    }
-    
-    func mapNotificationsToType() {
-        let types = Array(notificationsWTypes.keys)
-        
-        for type in types {
-            notificationsWTypes[type] = notifications.filter({($0.notifName).caseInsensitiveCompare(type) == .orderedSame})
-            // njCountiesNschools[county] = njSchools.filter({($0.properties.county).caseInsensitiveCompare(county) == .orderedSame})
-        }
-    }
+   private init () {
+       
+   }
     
     // Adding notification type/name from 'EmergencyTabViewController'
     func addNotifName(pinDrop: PinDrop) {
         fsCollection.addDocument(data: pinDrop.createPinDropDict())
     }
     
-    // Adding a NEW pin drop with NEW documentID
-    func addNotification(pinDrop: PinDrop) {
-        //sosUser: User, docID: String
-        fsCollection.addDocument(data: pinDrop.createPinDropDict()) //sending Pin Drop attributes from object to Firestore
+    func updateState(pinDrop: PinDrop) {
+        fsCollection.addDocument(data: pinDrop.createPinDropDict())
     }
     
+    func updateAccept(pinDrop: PinDrop) {
+        fsCollection.addDocument(data: pinDrop.createPinDropDict())
+    }
+    // Adding a NEW pin drop with NEW documentID
+    func addNotification(pinDrop: PinDrop) {
+        fsCollection.addDocument(data: pinDrop.createPinDropDict()) //sending Pin Drop attributes from object to Firestore
+    }
+
     func getPinDropInfo(forPinDropId id: String) -> PinDrop? {
         if let index = (notifications).firstIndex(where: {$0.pinDropId == id}) {
+            print("We got correct pin!")
             return notifications[index]
         }
         return nil;
     }
-     
+    
     
     //func here to get all the notifications from firestore
     func observeNotifications () {

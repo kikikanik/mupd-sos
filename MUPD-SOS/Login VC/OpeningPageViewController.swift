@@ -11,4 +11,8 @@ class OpeningPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    
+    
+    
 }

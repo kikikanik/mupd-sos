@@ -1,17 +1,9 @@
-//
-//  PinDropDetailViewController.swift
-//  MUPD-SOS
-//
-//  Created by Kinneret Kanik on 02/03/2023.
-//
-
 import UIKit
 import MapKit
 
 class PinDropDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate {
-    
+
     let pinDropCellReuseIdentifier = "notificationCell"
-    var notifName: String = " "
     
     //reference to models
     let userService = UserService.shared
@@ -21,55 +13,209 @@ class PinDropDetailViewController: UIViewController, UITableViewDelegate, UITabl
     // reference to selected tableViewCells section and row
     var selectedIndexPath: IndexPath?
     var selectedItem: PinDrop!
+    var selectedIncidentProfile: Profile!
+    var updatedAccept: Bool!
+    var updatedState: Bool!
     
     //table view local
-    
     @IBOutlet weak var notificationSummary: UITableView!
+    
+    //local vars
+    var firstName = " "
+    var lastName = " "
+    var phone = " "
+    
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.notificationSummary.dataSource = self
         self.notificationSummary.delegate = self
-        self.title = selectedItem?.notifName
+        self.title = selectedItem.notifName
+        print("!!!!selectedItem.userID: ")
+        print(selectedItem.userID)
+        print("!!!!selectedItem.pinDropId: ")
+        print(selectedItem.pinDropId)
+       
+        /*
+        profileService.getProfile(userID: selectedItem.userID) { response in
+            if (response) {
+                let firstname = self.profileService.existingProfile.firstName
+                let lastname = self.profileService.existingProfile.lastName
+                let cellPhone = self.profileService.existingProfile.phone
+                print(response)
+            }
+            else {
+                print("NO EXISTING PROFILE TO SHOW!!!")
+            }
+        }
+         */
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return section == 0 ? 6 : 2
+    }
+   func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return section == 0 ? "Incident Information" : "Profile Info on Reporter"
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print ("get cell")
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: pinDropCellReuseIdentifier, for: indexPath)
-    switch indexPath.row {
+        
+        //switch
+        let switchView = UISwitch(frame: .zero)
+        switchView.setOn(false, animated: true)
+        switchView.tag = indexPath.row
+        switchView.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
+        
+        //getProfileInfo
+        /*
+        profileService.getProfile(userID: selectedItem.userID) { response in
+            if (response) {
+                let firstname = self.profileService.existingProfile.firstName
+                let lastname = self.profileService.existingProfile.lastName
+                let cellPhone = self.profileService.existingProfile.phone
+                print(response)
+            }
+            else {
+                print("NO EXISTING PROFILE TO SHOW!!!")
+            }
+        }
+         */
+        
+        //let firstName = profileService.existingProfile!.firstName
+        //let lastName = profileService.existingProfile!.lastName
+        //let phone = profileService.existingProfile!.phone
+        
+        if indexPath.section == 0 {
 
-    case 0:
-        cell.textLabel?.text = "Emergency Name"
-        cell.detailTextLabel?.text = selectedItem.notifName
-    case 1:
-        cell.textLabel?.text = "Self or Bystander?"
-        cell.detailTextLabel?.text = selectedItem.identity
-    case 2:
-        cell.textLabel?.text = "User ID"
-        cell.detailTextLabel?.text = selectedItem.userID
-    case 3:
-        cell.textLabel?.text = "Time Reported"
-        cell.detailTextLabel?.text = selectedItem.timestamp
-    case 4:
-        cell.textLabel?.text = "Accept?"
-    default:
-        cell.textLabel?.text = "type"
-        cell.detailTextLabel?.text = "???"
-    }
-        cell.textLabel?.font = UIFont(name: "Helvetica", size: 18.0)// [UIFont fontWithName:@"Helvetica" size:24.0];
-        cell.detailTextLabel?.font = UIFont(name: "Helvetica", size: 18.0)
-        cell.detailTextLabel?.textColor = .blue
-        return cell
+            switch indexPath.row {
+            case 0:
+                cell.textLabel?.text = "Emergency Name"
+                cell.detailTextLabel?.text = selectedItem.notifName
+                cell.selectionStyle = UITableViewCell.SelectionStyle.none
+                print ("get cell")
+            case 1:
+                cell.textLabel?.text = "Self or Bystander?"
+                cell.detailTextLabel?.text = selectedItem.identity
+                cell.selectionStyle = UITableViewCell.SelectionStyle.none
+                print ("get cell")
+            case 2:
+                cell.textLabel?.text = "User ID"
+                cell.detailTextLabel?.text = selectedItem.userID
+                cell.selectionStyle = UITableViewCell.SelectionStyle.none
+                print ("get cell")
+            case 3:
+                cell.textLabel?.text = "Time Reported"
+                cell.detailTextLabel?.text = selectedItem.timestamp
+                cell.selectionStyle = UITableViewCell.SelectionStyle.none
+                print ("get cell")
+            case 4:
+                cell.textLabel?.text = "Accepted?"
+                switchView.setOn(selectedItem.acceptedNotif, animated: true)
+                cell.reloadInputViews()
+                cell.accessoryView = switchView
+                cell.detailTextLabel?.text = " "
+                //cell.detailTextLabel?.text = selectedItem.acceptedNotif ? "YES" : "NO"
+                print ("get cell")
+            case 5:
+                cell.textLabel?.text = "State?"
+                switchView.setOn(selectedItem.state, animated: true)
+                cell.reloadInputViews()
+                //cell.detailTextLabel?.text = selectedItem.state ? "TRUE" : "FALSE"
+                cell.detailTextLabel?.text = " "
+                cell.accessoryView = switchView
+                print ("get cell")
+            default:
+                cell.textLabel?.text = "????"
+                cell.detailTextLabel?.text = "???"
+            }
+            cell.textLabel?.font = UIFont(name: "Helvetica", size: 18.0)// [UIFont fontWithName:@"Helvetica" size:24.0];
+            cell.detailTextLabel?.font = UIFont(name: "Helvetica", size: 18.0)
+            cell.detailTextLabel?.textColor = .blue
+            
+            return cell
+        } else {
+            switch indexPath.row {
+            case 0:
+                cell.textLabel?.text = "Reporter Name"
+                cell.detailTextLabel?.text = firstName + lastName
+                cell.selectionStyle = UITableViewCell.SelectionStyle.none
+                print ("get cell")
+            case 1:
+                cell.textLabel?.text = "Reporter Cell Phone"
+                cell.detailTextLabel?.text = phone
+                cell.selectionStyle = UITableViewCell.SelectionStyle.none
+                print ("get cell")
+            default:
+                cell.textLabel?.text = "????"
+                cell.detailTextLabel?.text = "???"
+            }
+            cell.textLabel?.font = UIFont(name: "Helvetica", size: 18.0)
+            cell.detailTextLabel?.font = UIFont(name: "Helvetica", size: 18.0)
+            cell.detailTextLabel?.textColor = .blue
+            
+            return cell
+        }
     }
     
     // selected section and row
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedIndexPath = indexPath
     }
+    
+    func confirmAlert() {
+        let alert = UIAlertController(title: "Incident Information", message: "Incident Updated", preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+            
+            // Code in this block will trigger when OK button is tapped.
+            print("Ok button tapped");
+            //self.navigationController?.popViewController(animated: true)
+        }
+        alert.addAction(OKAction)
+        self.present(alert, animated: true, completion:nil)
+    }
+    
+    @objc func switchChanged(_ sender: UISwitch!) {
+        
+        print("Table row switch Changed \(sender.tag)")
+        print("The switch is \(sender.isOn ? "YES" : "NO")")
+        
+    }
 
+    @IBOutlet weak var saveInfo: UIBarButtonItem!
+    
+    @IBAction func updateIncident(_ sender: Any) {
+        
+        print("You pressed me!")
+        
+        selectedItem = PinDrop(acceptedNotif: selectedItem.acceptedNotif, identity: selectedItem.identity, importance: selectedItem.importance, userCoordinateLat: selectedItem.userCoordinateLat, pinDropId: selectedItem.pinDropId, userCoordinateLong: selectedItem.userCoordinateLong, reportedLocationLat: selectedItem.reportedLocationLong, reportedLocationLong: selectedItem.reportedLocationLong, notifName: selectedItem.notifName, state: selectedItem.state, submit: selectedItem.submit, timestamp: selectedItem.timestamp, userID: selectedItem.userID)
+        
+        pinDropService.addNotification(pinDrop: selectedItem)
+        
+        confirmAlert()
+
+        /*
+         
+         mupdprofile = MUPDProfile(userID: userService.currentUser!.email, title : usertitle, fullName : fullname, badge : badge, onDuty: userDuty)
+         
+         mupdprofileService.addMUPDProfileInfo(currentUser: mupdprofile!) { response in
+             if (response) {
+                 print("PROFILE SUCCESSFUL!!")
+             }
+             else {
+                 print("PROFILE FAILED!!!!")
+             }
+         }
+         print("PROFILE SAVED TO DATABASE!")
+         
+         confirmAlert()
+         
+     }
+         */
+    }
 }

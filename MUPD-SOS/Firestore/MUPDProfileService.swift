@@ -15,12 +15,12 @@ class MUPDProfileService {
     
     let userService = UserService.shared
     
-    let fsCollection = Firestore.firestore().collection("mupdprofile")  //initializing "profile" collection in Firestore
+    let fsCollection = Firestore.firestore().collection("mupdprofile")
     
     var MUPDProfiles: [MUPDProfile] = []
+    var existingMUPDProfile: MUPDProfile!
     
     var currentUser: User!
-    var currentProfile: MUPDProfile!
     
     private init () {
         
@@ -40,42 +40,74 @@ class MUPDProfileService {
     
     func findMUPDProfile(withID id: String, completionHandler: @escaping (Bool, MUPDProfile?) -> Void) {
         
-        var mupdprofile: MUPDProfile?
+        var mupdProfile: MUPDProfile?
         let docRef = fsCollection.document(id)
         
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
-                if let aMUPDProfile = MUPDProfile(data: document.data()!, documentID: document.documentID) {
-                    mupdprofile = aMUPDProfile
-                    print ("DOCUMENT/PROFILE ALREADY EXISTS!: \(document)")
-                    completionHandler(true, mupdprofile)
+                if let aProfile = MUPDProfile(data: document.data()!, documentID: document.documentID) {
+                    mupdProfile = aProfile
+                    print ("DOCUMENT/USER EXISTS!: \(document)")
+                    completionHandler(true, mupdProfile)
                 }
             }
             else {
-                print ("DOCUMENT/PROFILE DOES NOT EXIST!!!")
-                completionHandler(false, mupdprofile)
+                print ("DOCUMENT/USER DOES NOT EXIST!!!")
+                completionHandler(false, mupdProfile)
             }
         }
     }
     
+    /*
     func addMUPDProfileInfo(currentUser: MUPDProfile) {
         let uid = userService.currentUser!.documentID!
         print ("UNIQUE IDENTIFIER OF USER: \(uid)")
         self.addMUPDProfile(MUPDProfiles: currentUser, docID: uid)
     }
+     */
     
-    func updateOnDuty(currentProfile: MUPDProfile) {
-        let uid = currentProfile.userID
-        print("UNIQUE IDENTIFIER OF USER: \(uid)")
+    func addMUPDProfileInfo(currentUser: MUPDProfile, completionHandler: @escaping (Bool) -> Void) {
+       
         
-        fsCollection.document(uid).updateData([
-            "onDuty": currentProfile.onDuty
-        ])
+        let uid = userService.currentUser!.documentID!
         
-        print("DOCUMENT \(uid) on duty WAS UPDATED IN FIRESTORE!!")
+        self.findMUPDProfile(withID: uid) {(result, existingMUPDProfile) in
+            if result {
+                self.existingMUPDProfile = existingMUPDProfile
+                completionHandler(true)
+            }
+            else {
+                completionHandler(false)
+            }
+        }
+        print ("UNIQUE IDENTIFIER OF USER: \(uid)")
+        self.addMUPDProfile(MUPDProfiles: currentUser, docID: uid)
+    }
+    
+    func getMUPDProfile(docID: String, completionHandler: @escaping (Bool) -> Void) {
+        let docID = userService.currentUser!.documentID!
+        
+        self.findMUPDProfile(withID: docID) {(result, existingMUPDProfile) in
+            if result {
+                self.existingMUPDProfile = existingMUPDProfile
+                self.fsCollection.document(docID).getDocument {
+                    
+                    (document, error) in
+                    print("GETTING THIS DOCUMENT WITH ID: \(docID)")
+                    print("HERE IS THE PROFILE INFO!: \(existingMUPDProfile)")
+                    
+                    completionHandler(true)
+                }
+            }
+            else {
+                print("NO DOCUMENT TO GRAB!")
+                completionHandler(false)
+            }
+        }
     }
     
     //func here to get all the notifications from firestore
+    //amanda has a diff one - but this one works man 
     func observeMUPDProfiles() {
         
         fsCollection.addSnapshotListener { [self] (querySnapshot, err) in
