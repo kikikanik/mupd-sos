@@ -25,8 +25,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var centered = false
     
     //arrays to hold each Annotation
-    //var myNotifcationAnnotations: [MKPointAnnotation] = []
     var notificationAnnotations:[NotificationAnnotation] = []
+   
     var selectedNotificationAnnotation: NotificationAnnotation?
     
     var editedPinDrop: PinDrop?
@@ -106,12 +106,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                         pindropImageView.setBackgroundImage(UIImage(named: "carproblem"), for: UIControl.State())
                     case "Suspicious Person":
                         pindropImageView.setBackgroundImage(UIImage(named: "susperson"), for: UIControl.State())
-                    case "Shooter":
+                    case "Active Shooter":
                         pindropImageView.setBackgroundImage(UIImage(named: "shooter"), for: UIControl.State())
                     case "Rabid Animal":
                         pindropImageView.setBackgroundImage(UIImage(named: "rabidanimal"), for: UIControl.State())
                     default:
-                        pindropImageView.setBackgroundImage(UIImage(systemName: "questionmark.square.dashed"), for: UIControl.State())
+                        pindropImageView.setBackgroundImage(UIImage(systemName: "musos"), for: UIControl.State())
                     }
                 } else {
                     pindropImageView.setBackgroundImage(UIImage(systemName: "questionmark.square.dashed"), for: UIControl.State())
@@ -156,13 +156,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         for notification in pinDropService.notifications {
             //coordinates & userID
-            
-            let pin = NotificationAnnotation(title: notification.notifName, subtitle: notification.identity, coordinate: CLLocationCoordinate2D(latitude: notification.reportedLocationLat, longitude: notification.reportedLocationLong), color: (notification.importance == 1) ? UIColor.red : UIColor.yellow, pinDropID: notification.pinDropId, importance: notification.importance)
-              /*
-               let pin = NotificationAnnotation(title: notification.notifName, subtitle: notification.identity, notifType: notification.notifName, coordinate: CLLocationCoordinate2D(latitude: notification.reportedLocationLat, longitude: notification.reportedLocationLong), color: (notification.importance == 0) ? UIColor.red : UIColor.yellow)
-               */
-                                              
-            notificationAnnotations.append(pin)
+            if (notification.state == true) {
+                let pin = NotificationAnnotation(title: notification.notifName, subtitle: notification.identity, coordinate: CLLocationCoordinate2D(latitude: notification.reportedLocationLat, longitude: notification.reportedLocationLong), color: (notification.importance == 1) ? UIColor.red : UIColor.yellow, pinDropID: notification.pinDropId, importance: notification.importance)
+                notificationAnnotations.append(pin)
+            }
         }
         mapView.reloadInputViews() //reload data
         mapView.addAnnotations(notificationAnnotations)
@@ -186,7 +183,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             if(segue.identifier == "notificationSegue") {
                 let dvc = segue.destination as! PinDropDetailViewController
                 dvc.selectedItem = pinDropService.getPinDropInfo(forPinDropId: selectedNotificationAnnotation!.pinDropID)
-                //try either one! idk man
 
                 print("pindrop id: ")
                 print(selectedNotificationAnnotation!.pinDropID)

@@ -15,13 +15,19 @@ class IncidentsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var incidents: [PinDrop] = [] //njCountiesSorted or shapeList
     var selectedIncident: PinDrop?
+   
+    // model variable - variable to instantiate the model
+    var incidentsViewModel = Menu (currentMode: IncidentsViewModes.all)
     
     @IBOutlet var incidentsTableView: UITableView!
+    
+    @IBOutlet weak var modeSelection: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         incidentsTableView.delegate = self
         incidentsTableView.dataSource = self
+        setupModeMenu()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -36,14 +42,28 @@ class IncidentsViewController: UIViewController, UITableViewDelegate, UITableVie
         for incident in pindropService.notifications {
             let incident = PinDrop(acceptedNotif: incident.acceptedNotif, identity: incident.identity, importance: incident.importance, userCoordinateLat: incident.userCoordinateLat, pinDropId: incident.pinDropId, userCoordinateLong: incident.userCoordinateLong, reportedLocationLat: incident.reportedLocationLat, reportedLocationLong: incident.reportedLocationLong, notifName: incident.notifName, state: incident.state, submit: incident.submit, timestamp: incident.timestamp, userID: incident.userID)
             
-            //Report(reportID: userService.currentUser!.email, emergencyType: report.emergencyType, message: report.message, postedBy: report.postedBy, timestamp: report.timestamp)
-
             incidents.append(incident)
         }
         incidentsTableView.reloadData()
-        print("this is all incidents:" )
-        print(incidents)
     }
+    
+    func setupModeMenu() {
+        let allIncidents = UIAction(title:"All Incidents") { (action) in self.selectMode (mode: .all)
+        }
+        let activeIncidents = UIAction(title:"Active Incidents") { (action) in self.selectMode(mode: .active)
+        }
+        let closedIncidents = UIAction(title:"Closed Incidents") { (action) in self.selectMode(mode: .closed)
+        }
+        let menu = UIMenu (title: "View Incidents", children: [allIncidents, activeIncidents, closedIncidents])
+        modeSelection.menu = menu
+        modeSelection.primaryAction = nil
+    }
+    
+    func selectMode(mode: IncidentsViewModes) {
+        incidentsViewModel.currentMode = mode
+        self.title = incidentsViewModel.currentMode.rawValue + "Incidents"
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return incidents.count
@@ -58,6 +78,13 @@ class IncidentsViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.textLabel?.text = thisIncident.notifName
         cell.detailTextLabel?.text = thisIncident.userID
         
+        /*
+         if (thisIncident.acceptedNotif == true) {
+            cell.backgroundColor = UIColor.systemBlue
+        } else {
+            cell.backgroundColor = UIColor.lightGray
+        }
+         */
         return cell
     }
     

@@ -31,16 +31,13 @@ class PinDropService {
         fsCollection.addDocument(data: pinDrop.createPinDropDict())
     }
     
-    func updateState(pinDrop: PinDrop) {
-        fsCollection.addDocument(data: pinDrop.createPinDropDict())
-    }
-    
-    func updateAccept(pinDrop: PinDrop) {
-        fsCollection.addDocument(data: pinDrop.createPinDropDict())
-    }
     // Adding a NEW pin drop with NEW documentID
     func addNotification(pinDrop: PinDrop) {
         fsCollection.addDocument(data: pinDrop.createPinDropDict()) //sending Pin Drop attributes from object to Firestore
+    }
+    
+    func updateNotification(pinDrop: PinDrop, docID: String) {
+        fsCollection.document(docID).setData(pinDrop.createPinDropDict())
     }
 
     func getPinDropInfo(forPinDropId id: String) -> PinDrop? {

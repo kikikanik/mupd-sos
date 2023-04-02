@@ -62,7 +62,7 @@ class IncidentChatViewController: UIViewController, UITableViewDelegate, UITable
             cell.textLabel?.text = thisMessage.postedBy
             cell.detailTextLabel?.text = thisMessage.postedMessage
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
-
+            
         return cell
     }
     

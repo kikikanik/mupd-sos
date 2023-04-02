@@ -188,8 +188,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xLh-hb-vd6">
-                                <rect key="frame" x="0.0" y="56" width="393" height="644"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xLh-hb-vd6">
+                                <rect key="frame" x="0.0" y="74" width="393" height="626"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="incidentCell" textLabel="xht-R0-Szm" detailTextLabel="S1H-G9-f0i" style="IBUITableViewCellStyleValue1" id="8dH-Ba-Bkm">
@@ -221,22 +222,19 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2KM-lw-jxz"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="xLh-hb-vd6" firstAttribute="leading" secondItem="2KM-lw-jxz" secondAttribute="leading" id="Kwi-Uq-EcB"/>
-                            <constraint firstItem="2KM-lw-jxz" firstAttribute="trailing" secondItem="xLh-hb-vd6" secondAttribute="trailing" id="TKP-dP-RW8"/>
-                            <constraint firstItem="xLh-hb-vd6" firstAttribute="top" secondItem="2KM-lw-jxz" secondAttribute="top" id="WbD-jG-oxn"/>
-                            <constraint firstItem="2KM-lw-jxz" firstAttribute="bottom" secondItem="xLh-hb-vd6" secondAttribute="bottom" constant="69" id="vR4-dV-Bdk"/>
-                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Incident List" id="t5e-ua-ht7"/>
+                    <navigationItem key="navigationItem" title="Incident List" id="t5e-ua-ht7">
+                        <barButtonItem key="rightBarButtonItem" image="filemenu.and.selection" catalog="system" id="aIS-Jo-ZZW"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="incidentsTableView" destination="xLh-hb-vd6" id="bSX-e0-1jS"/>
+                        <outlet property="modeSelection" destination="aIS-Jo-ZZW" id="gaB-OQ-0dy"/>
                         <segue destination="Xgw-hj-D6p" kind="show" identifier="incidentSegue" id="bCa-y9-oXG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f95-oT-08A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-11" y="2404"/>
+            <point key="canvasLocation" x="-11.450381679389313" y="2403.5211267605637"/>
         </scene>
         <!--Reports-->
         <scene sceneID="aRu-vh-WZZ">
@@ -903,6 +901,7 @@
     <resources>
         <image name="doc.badge.plus" catalog="system" width="116" height="128"/>
         <image name="doc.fill" catalog="system" width="115" height="128"/>
+        <image name="filemenu.and.selection" catalog="system" width="128" height="93"/>
         <image name="map" catalog="system" width="128" height="112"/>
         <image name="message.circle" catalog="system" width="128" height="123"/>
         <image name="message.fill" catalog="system" width="128" height="114"/>

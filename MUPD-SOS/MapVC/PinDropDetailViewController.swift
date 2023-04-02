@@ -14,8 +14,9 @@ class PinDropDetailViewController: UIViewController, UITableViewDelegate, UITabl
     var selectedIndexPath: IndexPath?
     var selectedItem: PinDrop!
     var selectedIncidentProfile: Profile!
-    var updatedAccept: Bool!
-    var updatedState: Bool!
+   // var updatedAccept: Bool!
+   // var updatedState: Bool!
+    var answer: Bool!
     
     //table view local
     @IBOutlet weak var notificationSummary: UITableView!
@@ -116,19 +117,18 @@ class PinDropDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 print ("get cell")
             case 4:
                 cell.textLabel?.text = "Accepted?"
+                cell.detailTextLabel?.text = " "
+                cell.accessoryView = switchView
                 switchView.setOn(selectedItem.acceptedNotif, animated: true)
                 cell.reloadInputViews()
-                cell.accessoryView = switchView
-                cell.detailTextLabel?.text = " "
-                //cell.detailTextLabel?.text = selectedItem.acceptedNotif ? "YES" : "NO"
                 print ("get cell")
             case 5:
-                cell.textLabel?.text = "State?"
-                switchView.setOn(selectedItem.state, animated: true)
-                cell.reloadInputViews()
-                //cell.detailTextLabel?.text = selectedItem.state ? "TRUE" : "FALSE"
+                cell.textLabel?.text = "Incident Status"
                 cell.detailTextLabel?.text = " "
                 cell.accessoryView = switchView
+                switchView.setOn(selectedItem.state, animated: true)
+
+                cell.reloadInputViews()
                 print ("get cell")
             default:
                 cell.textLabel?.text = "????"
@@ -181,10 +181,14 @@ class PinDropDetailViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     @objc func switchChanged(_ sender: UISwitch!) {
-        
         print("Table row switch Changed \(sender.tag)")
         print("The switch is \(sender.isOn ? "YES" : "NO")")
         
+        if (sender.tag == 4) {
+            selectedItem.acceptedNotif = sender.isOn
+        } else {
+            selectedItem.state = sender.isOn
+        }
     }
 
     @IBOutlet weak var saveInfo: UIBarButtonItem!
@@ -193,29 +197,9 @@ class PinDropDetailViewController: UIViewController, UITableViewDelegate, UITabl
         
         print("You pressed me!")
         
-        selectedItem = PinDrop(acceptedNotif: selectedItem.acceptedNotif, identity: selectedItem.identity, importance: selectedItem.importance, userCoordinateLat: selectedItem.userCoordinateLat, pinDropId: selectedItem.pinDropId, userCoordinateLong: selectedItem.userCoordinateLong, reportedLocationLat: selectedItem.reportedLocationLong, reportedLocationLong: selectedItem.reportedLocationLong, notifName: selectedItem.notifName, state: selectedItem.state, submit: selectedItem.submit, timestamp: selectedItem.timestamp, userID: selectedItem.userID)
-        
-        pinDropService.addNotification(pinDrop: selectedItem)
+        pinDropService.updateNotification(pinDrop: selectedItem, docID: selectedItem.pinDropId)
         
         confirmAlert()
-
-        /*
          
-         mupdprofile = MUPDProfile(userID: userService.currentUser!.email, title : usertitle, fullName : fullname, badge : badge, onDuty: userDuty)
-         
-         mupdprofileService.addMUPDProfileInfo(currentUser: mupdprofile!) { response in
-             if (response) {
-                 print("PROFILE SUCCESSFUL!!")
-             }
-             else {
-                 print("PROFILE FAILED!!!!")
-             }
-         }
-         print("PROFILE SAVED TO DATABASE!")
-         
-         confirmAlert()
-         
-     }
-         */
     }
 }
