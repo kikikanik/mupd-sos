@@ -26,7 +26,6 @@ class MUPDProfileViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var badgeLabel: UILabel!
     
-    
     @IBOutlet weak var usertitle: UITextField!
     
     @IBOutlet weak var fullname: UITextField!
@@ -57,10 +56,8 @@ class MUPDProfileViewController: UIViewController, UITextFieldDelegate {
                 self.usertitle.text = usertitle
             }
             else {
-                
                 print("NO EXISTING PROFILE TO SHOW!!!")
             }
-            
         }
     }
         

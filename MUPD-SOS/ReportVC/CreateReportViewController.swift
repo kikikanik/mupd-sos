@@ -39,9 +39,9 @@ class CreateReportViewController: UIViewController {
             return
         }
         
-        let newDocumentID = UUID().uuidString
-        print ("UNIQUE IDENTIFIER OF Report: \(newDocumentID)")
-        let reportID = newDocumentID
+       // let newDocumentID = UUID().uuidString
+       // print ("UNIQUE IDENTIFIER OF Report: \(newDocumentID)")
+       // let reportID = convertTimestamp()
         
         mupdprofileService.getMUPDProfile(docID: userService.currentUser!.email) { [self] response in
             if (response) {
@@ -54,7 +54,7 @@ class CreateReportViewController: UIViewController {
                 print("NO EXISTING PROFILE TO SHOW!!!")
             }
             
-            report = Report(reportID: reportID, emergencyType: EmergencyType, message: Message, postedBy: postedBy, timestamp: convertTimestamp())
+            report = Report(reportID: convertTimestamp(), emergencyType: EmergencyType, message: Message, postedBy: postedBy, timestamp: convertTimestamp())
             reportService.addReport(report: report!, docID: report!.reportID)
             print("REPORT SAVED TO DATABASE!")
         }

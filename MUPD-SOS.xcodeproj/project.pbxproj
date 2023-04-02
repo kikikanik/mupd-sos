@@ -37,7 +37,7 @@
 		D888372229B4D6940013176B /* ReportDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888372129B4D6940013176B /* ReportDetailViewController.swift */; };
 		D8A6799229AE60B800A65C35 /* OpeningPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A6799129AE60B800A65C35 /* OpeningPageViewController.swift */; };
 		D8A6799429AE615400A65C35 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A6799329AE615400A65C35 /* LoginViewController.swift */; };
-		D8A6799629AE616100A65C35 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A6799529AE616100A65C35 /* RegisterViewController.swift */; };
+		D8A6799629AE616100A65C35 /* RegisterPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A6799529AE616100A65C35 /* RegisterPageViewController.swift */; };
 		D8DD0C8429B532C400634014 /* IncidentChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DD0C8329B532C400634014 /* IncidentChatViewController.swift */; };
 		D8DD0C8629B54C0700634014 /* MUPDProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DD0C8529B54C0600634014 /* MUPDProfile.swift */; };
 		D8DD0C8829B54C1700634014 /* MUPDProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DD0C8729B54C1700634014 /* MUPDProfileService.swift */; };
@@ -82,7 +82,7 @@
 		D888372129B4D6940013176B /* ReportDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDetailViewController.swift; sourceTree = "<group>"; };
 		D8A6799129AE60B800A65C35 /* OpeningPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningPageViewController.swift; sourceTree = "<group>"; };
 		D8A6799329AE615400A65C35 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		D8A6799529AE616100A65C35 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		D8A6799529AE616100A65C35 /* RegisterPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPageViewController.swift; sourceTree = "<group>"; };
 		D8DD0C8329B532C400634014 /* IncidentChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentChatViewController.swift; sourceTree = "<group>"; };
 		D8DD0C8529B54C0600634014 /* MUPDProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MUPDProfile.swift; path = Firestore/MUPDProfile.swift; sourceTree = "<group>"; };
 		D8DD0C8729B54C1700634014 /* MUPDProfileService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MUPDProfileService.swift; path = Firestore/MUPDProfileService.swift; sourceTree = "<group>"; };
@@ -257,7 +257,7 @@
 			children = (
 				D8A6799129AE60B800A65C35 /* OpeningPageViewController.swift */,
 				D8A6799329AE615400A65C35 /* LoginViewController.swift */,
-				D8A6799529AE616100A65C35 /* RegisterViewController.swift */,
+				D8A6799529AE616100A65C35 /* RegisterPageViewController.swift */,
 			);
 			path = "Login VC";
 			sourceTree = "<group>";
@@ -366,7 +366,7 @@
 				D8DD0C8629B54C0700634014 /* MUPDProfile.swift in Sources */,
 				D86D1AE529A3E8510092A5D7 /* User.swift in Sources */,
 				D86D087529D229FA00E9B2DF /* ChatService.swift in Sources */,
-				D8A6799629AE616100A65C35 /* RegisterViewController.swift in Sources */,
+				D8A6799629AE616100A65C35 /* RegisterPageViewController.swift in Sources */,
 				D86D1AF329A3E8960092A5D7 /* Pin Drop Service.swift in Sources */,
 				D888372229B4D6940013176B /* ReportDetailViewController.swift in Sources */,
 				D888371829B1827F0013176B /* CreateReportViewController.swift in Sources */,

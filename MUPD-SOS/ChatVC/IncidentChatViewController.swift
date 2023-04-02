@@ -66,26 +66,15 @@ class IncidentChatViewController: UIViewController, UITableViewDelegate, UITable
         return cell
     }
     
-    
-    
-    //for posting a message:
-    func timeInterval() -> String {
-        let tnow = Date()
-        var ts = String(tnow.timeIntervalSince1970)
-        ts = ts.replacingOccurrences(of: ".", with: "")
-        return ts
-    }
-    
-    func getLongDateTime() -> String {
+    func convertTimestamp() -> String {
         let date = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .long
-        dateFormatter.timeStyle = .long
-        return dateFormatter.string(from: date)
-    } //end getLongDateTime
+        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm:ss"
+        let currentTime = dateFormatter.string(from: date)
+        return currentTime
+    }
     
     @IBOutlet weak var newMessage: UITextView!
-    
     
     func confirmAlert() {
         let alert = UIAlertController(title: "Message", message: "Message Sent!", preferredStyle: .alert)
@@ -98,12 +87,11 @@ class IncidentChatViewController: UIViewController, UITableViewDelegate, UITable
         self.present(alert, animated: true, completion:nil)
     }
     
-    
     @IBAction func sendButton(_ sender: Any) {
         //@IBAction func sendButton(_ sender: Any) {
         print("You have pressed the send button!")
        
-        let messageID = timeInterval()
+        let messageID = convertTimestamp()
         
         let postedBy = userService.currentUser!.email
 

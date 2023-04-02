@@ -27,6 +27,8 @@ class MUPDProfileService {
     }
     
     func addMUPDProfile(MUPDProfiles: MUPDProfile, docID: String) {
+        var docID = userService.currentUser!.email
+        
         fsCollection.document(docID).setData(MUPDProfiles.createMUPDProfileDict()) {
             err in
             if let err = err {
@@ -57,18 +59,9 @@ class MUPDProfileService {
             }
         }
     }
-    
-    /*
-    func addMUPDProfileInfo(currentUser: MUPDProfile) {
-        let uid = userService.currentUser!.documentID!
-        print ("UNIQUE IDENTIFIER OF USER: \(uid)")
-        self.addMUPDProfile(MUPDProfiles: currentUser, docID: uid)
-    }
-     */
-    
+
     func addMUPDProfileInfo(currentUser: MUPDProfile, completionHandler: @escaping (Bool) -> Void) {
        
-        
         let uid = userService.currentUser!.documentID!
         
         self.findMUPDProfile(withID: uid) {(result, existingMUPDProfile) in

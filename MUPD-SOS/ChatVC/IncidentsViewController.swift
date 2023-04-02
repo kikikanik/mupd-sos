@@ -17,17 +17,17 @@ class IncidentsViewController: UIViewController, UITableViewDelegate, UITableVie
     var selectedIncident: PinDrop?
    
     // model variable - variable to instantiate the model
-    var incidentsViewModel = Menu (currentMode: IncidentsViewModes.all)
+    //var incidentsViewModel = Menu (currentMode: IncidentsViewModes.all)
     
     @IBOutlet var incidentsTableView: UITableView!
     
-    @IBOutlet weak var modeSelection: UIBarButtonItem!
+   // @IBOutlet weak var modeSelection: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         incidentsTableView.delegate = self
         incidentsTableView.dataSource = self
-        setupModeMenu()
+        //setupModeMenu()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -46,7 +46,7 @@ class IncidentsViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         incidentsTableView.reloadData()
     }
-    
+  /*
     func setupModeMenu() {
         let allIncidents = UIAction(title:"All Incidents") { (action) in self.selectMode (mode: .all)
         }
@@ -63,7 +63,7 @@ class IncidentsViewController: UIViewController, UITableViewDelegate, UITableVie
         incidentsViewModel.currentMode = mode
         self.title = incidentsViewModel.currentMode.rawValue + "Incidents"
     }
-    
+    */
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return incidents.count
@@ -77,14 +77,7 @@ class IncidentsViewController: UIViewController, UITableViewDelegate, UITableVie
         
         cell.textLabel?.text = thisIncident.notifName
         cell.detailTextLabel?.text = thisIncident.userID
-        
-        /*
-         if (thisIncident.acceptedNotif == true) {
-            cell.backgroundColor = UIColor.systemBlue
-        } else {
-            cell.backgroundColor = UIColor.lightGray
-        }
-         */
+
         return cell
     }
     
@@ -110,5 +103,4 @@ class IncidentsViewController: UIViewController, UITableViewDelegate, UITableVie
             self.incidentsTableView.deselectRow(at: indexPath, animated: true)
         }
     }
-    
 }

@@ -1,100 +1,54 @@
-//
-//  LogInViewController.swift
-//  MUPD-SOS
-//
-//  Created by Kinneret Kanik on 28/02/2023.
-//
 
 import UIKit
+
 
 class LoginViewController: UIViewController {
     
     let userService = UserService.shared
     
-    override func viewDidLoad() {
-        
-    }
+    var selectUserType = 0
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
     
     @IBOutlet var EmailInput: UITextField!
     @IBOutlet var PasswordInput: UITextField!
- 
-    func alertUserLoginError() {
-        let alert = UIAlertController(title: "Invalid Login!", message: "Please register as a new user!", preferredStyle: .alert)
+    
+    func alertLogin() {
+        let alert = UIAlertController(title: "User does not exist!", message: "Please register as a new user", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
-        
         present (alert, animated: true)
     }
     
-    @objc private func loginButtonTapped() {
-        
-        guard let email = EmailInput.text, let password = PasswordInput.text, !email.isEmpty, !password.isEmpty, password.count >= 6 else {
-                    alertUserLoginError()
-                    return
-                }
-            }
-    
-    func alertLogin(response: Bool) {
-            let alert = UIAlertController(title: "User does not exist!", message: "Please register as a new user!", preferredStyle: .alert)
-            if response == false {
-                
-                
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                
-                self.present(alert, animated: true, completion: nil)
-                
-            }
-            else if response == true {
-                self.dismiss(animated: false)
-                self.performSegue(withIdentifier: "loginSuccess", sender: self)
-            }
-        }
-    
-    
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == "loginSuccess" {
-            let segueShouldOccur = true || false
-            if !segueShouldOccur {
-                let notPermitted = UIAlertController(title: "Alert", message: "User does not exist! Please register as a new user", preferredStyle: .alert)
-                notPermitted.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                
-                // shows alert to user
-                present(notPermitted, animated: true)
-                
-                // prevents the segue from occurring
-                return false
-            }
-           
-        }
-        //by default, perform the normal segue
-        return true
+    func alertEmptyFields() {
+        let alert = UIAlertController(title: "Email/Password field is empty!", message: "Please enter your valid login!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+        present (alert, animated: true)
     }
     
-    
-    
     @IBAction func SignInButton(_ sender: UIButton) {
-        
-        let currentUser = User(id: "", email: "", tac: true, userType: "MUPD");
-                guard let email = EmailInput.text, !email.isEmpty else {
-                    print ("Email field is empty!")
-                    return
-                }
+        let currentUser = User(id: "", email: "", tac: true, userType: "");
+        guard let email = EmailInput.text, !email.isEmpty else {
+            alertEmptyFields()
+            print ("Email field is empty!")
+            return
+        }
 
-                guard let password = PasswordInput.text, !password.isEmpty else {
-                    print ("Password field is empty!");
-                    return
-                }
-       
+        guard let password = PasswordInput.text, !password.isEmpty else {
+            alertEmptyFields()
+            print ("Password field is empty!");
+            return
+        }
         userService.signIn(email: email, password: password, currentUser: currentUser) { [self] response in
-            
             if (!response) {
-                    print("LOGIN FAILED!!!!")
+                alertLogin()
+                print("LOGIN FAILED!!!!")
             }
-                else {
-               // alertLogin(response: true)
+            else {
+                performSegue(withIdentifier: "loginSuccess", sender: self)
                 print("LOGIN SUCCESSFUL!!")
-                    
-                }
+            }
         }
     }
 }
