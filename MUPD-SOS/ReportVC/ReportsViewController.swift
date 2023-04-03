@@ -102,7 +102,7 @@ extension ReportsViewController: UITableViewDataSource {
         cell.postedByLabel?.text = thisReport.postedBy
         
         switch (thisReport.emergencyType) {
-            case "Health":
+            case "Medical":
                 cell.imageView?.image = UIImage(named: "medical")
              case "Traffic":
              cell.imageView?.image = UIImage(named: "carproblem")

@@ -65,19 +65,29 @@ class IncidentsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "incidentCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "incidentCell", for: indexPath) as! CustomIncidentsTableViewCell
         
         if indexPath.section == 0 {
             let thisIncident = openIncidents[indexPath.row]
-            cell.textLabel?.text = thisIncident.notifName
-            cell.detailTextLabel?.text = thisIncident.userID
+            cell.title?.text = thisIncident.notifName
+            cell.reporter?.text = thisIncident.userID
+            if (thisIncident.acceptedNotif == false) {
+                cell.sourceImage?.image = UIImage(named: "notAcc")
+            } else {
+                cell.sourceImage?.image = UIImage(named: "yesAcc")
+            }
             return cell
         } else {
             let thisIncident = closedIncidents[indexPath.row]
-            cell.textLabel?.text = thisIncident.notifName
-            cell.detailTextLabel?.text = thisIncident.userID
+            cell.title?.text = thisIncident.notifName
+            cell.reporter?.text = thisIncident.userID
+            cell.sourceImage?.image = UIImage(named: "closed")
             return cell
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

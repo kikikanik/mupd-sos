@@ -49,7 +49,7 @@ struct PinDrop {
               let reportedLocationLat = data["reportedLocationLat"] as? Double,
               let reportedLocationLong = data["reportedLocationLong"] as? Double,
               let identity = data["identity"] as? String,
-              let pinDropId = documentID as? String,
+              let pinDropId = documentID as String?,
               let acceptedNotif = data["acceptedNotif"] as? Bool,
               let importance = data["importance"] as? Int,
               let notifName = data["notifName"] as? String,
@@ -58,7 +58,6 @@ struct PinDrop {
               let timestamp = data["timestamp"] as? String else {
             return nil
         }
-      //  self.documentID = documentID
         self.userID = userID
         self.userCoordinateLat = userCoordinateLat
         self.userCoordinateLong = userCoordinateLong

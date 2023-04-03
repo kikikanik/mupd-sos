@@ -37,6 +37,7 @@
 		D8A6799229AE60B800A65C35 /* OpeningPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A6799129AE60B800A65C35 /* OpeningPageViewController.swift */; };
 		D8A6799429AE615400A65C35 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A6799329AE615400A65C35 /* LoginViewController.swift */; };
 		D8A6799629AE616100A65C35 /* RegisterPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A6799529AE616100A65C35 /* RegisterPageViewController.swift */; };
+		D8CDF7F729DB32FE003AE5D6 /* CustomIncidentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CDF7F629DB32FE003AE5D6 /* CustomIncidentsTableViewCell.swift */; };
 		D8DD0C8429B532C400634014 /* IncidentChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DD0C8329B532C400634014 /* IncidentChatViewController.swift */; };
 		D8DD0C8629B54C0700634014 /* MUPDProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DD0C8529B54C0600634014 /* MUPDProfile.swift */; };
 		D8DD0C8829B54C1700634014 /* MUPDProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DD0C8729B54C1700634014 /* MUPDProfileService.swift */; };
@@ -81,6 +82,7 @@
 		D8A6799129AE60B800A65C35 /* OpeningPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningPageViewController.swift; sourceTree = "<group>"; };
 		D8A6799329AE615400A65C35 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D8A6799529AE616100A65C35 /* RegisterPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPageViewController.swift; sourceTree = "<group>"; };
+		D8CDF7F629DB32FE003AE5D6 /* CustomIncidentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomIncidentsTableViewCell.swift; sourceTree = "<group>"; };
 		D8DD0C8329B532C400634014 /* IncidentChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentChatViewController.swift; sourceTree = "<group>"; };
 		D8DD0C8529B54C0600634014 /* MUPDProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MUPDProfile.swift; path = Firestore/MUPDProfile.swift; sourceTree = "<group>"; };
 		D8DD0C8729B54C1700634014 /* MUPDProfileService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MUPDProfileService.swift; path = Firestore/MUPDProfileService.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				D8163DEE29B50AD1003A25CC /* IncidentsViewController.swift */,
+				D8CDF7F629DB32FE003AE5D6 /* CustomIncidentsTableViewCell.swift */,
 				D8DD0C8329B532C400634014 /* IncidentChatViewController.swift */,
 				D8FF22C229C1265F007DCF97 /* ProfileViewController.swift */,
 			);
@@ -352,6 +355,7 @@
 				D8DD0C8429B532C400634014 /* IncidentChatViewController.swift in Sources */,
 				D888371129B1749B0013176B /* PinDropDetailViewController.swift in Sources */,
 				D86D1AED29A3E8720092A5D7 /* Report.swift in Sources */,
+				D8CDF7F729DB32FE003AE5D6 /* CustomIncidentsTableViewCell.swift in Sources */,
 				D86D1AEF29A3E87B0092A5D7 /* Report Service.swift in Sources */,
 				D86D087229D229DA00E9B2DF /* Message.swift in Sources */,
 				D888370F29B174490013176B /* AnnotationTypes.swift in Sources */,

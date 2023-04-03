@@ -23,7 +23,7 @@ class CreateReportViewController: UIViewController {
     
     @IBOutlet weak var EmergencyType: UITextField!
     
-    @IBOutlet weak var Message: UITextField!
+    @IBOutlet weak var Message: UITextView!
     
     @IBOutlet weak var uploadButton: UIBarButtonItem!
     

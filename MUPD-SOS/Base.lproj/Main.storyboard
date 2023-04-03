@@ -194,29 +194,38 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="incidentCell" textLabel="xht-R0-Szm" detailTextLabel="S1H-G9-f0i" style="IBUITableViewCellStyleValue1" id="8dH-Ba-Bkm">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="incidentCell" rowHeight="68" id="8dH-Ba-Bkm" customClass="CustomIncidentsTableViewCell" customModule="MUPD_SOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="68"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8dH-Ba-Bkm" id="3Yg-Mg-0gj">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8dH-Ba-Bkm" id="3Yg-Mg-0gj" customClass="CustomIncidentsTableViewCell" customModule="MUPD_SOS" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="68"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xht-R0-Szm">
-                                                    <rect key="frame" x="20" y="15" width="25" height="14.333333333333334"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zQF-af-QGp">
+                                                    <rect key="frame" x="20" y="0.0" width="85" height="68"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="incident title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKX-7X-arb">
+                                                    <rect key="frame" x="134" y="0.0" width="239" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="S1H-G9-f0i">
-                                                    <rect key="frame" x="340.33333333333331" y="15" width="32.666666666666664" height="14.333333333333334"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="reporter email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dq7-yB-Xon">
+                                                    <rect key="frame" x="134" y="22" width="239" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="reporter" destination="Dq7-yB-Xon" id="nfh-fU-Qoa"/>
+                                            <outlet property="sourceImage" destination="zQF-af-QGp" id="wdT-Gp-U2G"/>
+                                            <outlet property="title" destination="PKX-7X-arb" id="kIA-mn-xuE"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -325,7 +334,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DP9-Ig-aV6">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DP9-Ig-aV6">
                                             <rect key="frame" x="117" y="15" width="35" height="15.666666666666666"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -360,15 +369,22 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="(type report here)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dd9-rp-L6b">
-                                <rect key="frame" x="53" y="201" width="277" height="545"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="(type here...)" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rz2-VU-LRO">
+                                <rect key="frame" x="53" y="206" width="277" height="539"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="dt2-83-F4V"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Rz2-VU-LRO" firstAttribute="top" secondItem="dt2-83-F4V" secondAttribute="top" constant="150" id="9kR-4k-HbO"/>
+                            <constraint firstItem="dt2-83-F4V" firstAttribute="trailing" secondItem="Rz2-VU-LRO" secondAttribute="trailing" constant="63" id="iZT-gK-4UU"/>
+                            <constraint firstItem="Rz2-VU-LRO" firstAttribute="leading" secondItem="dt2-83-F4V" secondAttribute="leading" constant="53" id="pa9-gb-E87"/>
+                            <constraint firstItem="dt2-83-F4V" firstAttribute="bottom" secondItem="Rz2-VU-LRO" secondAttribute="bottom" constant="58" id="xHk-Lz-bei"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Create Report" id="Ffw-WJ-u5X">
                         <barButtonItem key="rightBarButtonItem" title="upload" image="square.and.arrow.up" catalog="system" id="yrq-kw-PF4">
@@ -379,13 +395,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="EmergencyType" destination="JVV-LN-F9a" id="nVg-8D-Dcf"/>
-                        <outlet property="Message" destination="dd9-rp-L6b" id="HLF-If-e3S"/>
+                        <outlet property="Message" destination="Rz2-VU-LRO" id="9AN-VI-Beg"/>
                         <outlet property="uploadButton" destination="yrq-kw-PF4" id="3NS-wf-iA7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Unx-sq-LFJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1842" y="2058"/>
+            <point key="canvasLocation" x="1841.9847328244275" y="2057.7464788732395"/>
         </scene>
         <!--Chats-->
         <scene sceneID="OqT-ka-D29">
@@ -638,7 +654,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="shy-og-wPG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1170" y="2404"/>
+            <point key="canvasLocation" x="-1066" y="2404"/>
         </scene>
         <!--MUPD Officer List-->
         <scene sceneID="ICz-Dc-IhB">
