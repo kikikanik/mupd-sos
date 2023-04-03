@@ -31,6 +31,34 @@ class ChatService {
         fsCollection.document(notificationID).collection("chat").addDocument(data: message.createMessageDict())
     }
     
+    func addMessageMaybe(message: Message, notificationID: String, docID: String) {
+       // fsCollection.document(notificationID).collection("chat").addDocument(data: message.createMessageDict()) {
+        fsCollection.document(notificationID).collection("chat").document(docID).setData(message.createMessageDict()) {
+
+       // fsCollection.document(docID).setData(message.createMessageDict()) {
+            err in
+            if let err = err {
+                print ("ERROR ADDING THE Message DOCUMENT!! \(err)")
+            }
+            else {
+                print ("DOCUMENT ADDED WITH Message DOC ID: \(docID)")
+            }
+        }
+    }
+    /*
+     func addReport(report: Report, docID: String) {
+         fsCollection.document(docID).setData(report.createReportDict()) {
+             err in
+             if let err = err {
+                 print ("ERROR ADDING THE Report DOCUMENT!! \(err)")
+             }
+             else {
+                 print ("DOCUMENT ADDED WITH Report DOC ID: \(docID)")
+             }
+         }
+     }
+     */
+    
     //func here to get all the notifications from firestore
     func observeChat(notificationID: String) {
         

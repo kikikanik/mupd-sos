@@ -5,6 +5,8 @@
 //  Created by Kinneret Kanik on 27/03/2023.
 //
 import Foundation
+import Firebase
+import FirebaseFirestore
 
 struct Message {
     var messageID: String
@@ -18,8 +20,7 @@ struct Message {
     }
 
     init?(data: [String: Any], documentID: String) {
-        guard let messageID = documentID as? String,
-              //guard let reportID = documentID as String?,
+        guard let messageID = documentID as String?,
               let postedBy = data["postedBy"] as? String,
               let postedMessage = data["postedMessage"] as? String else {
             return nil

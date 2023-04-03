@@ -5,6 +5,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class IncidentChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -91,7 +92,6 @@ class IncidentChatViewController: UIViewController, UITableViewDelegate, UITable
         //@IBAction func sendButton(_ sender: Any) {
         print("You have pressed the send button!")
        
-        
         let messageID = convertTimestamp()
         
         let postedBy = userService.currentUser!.email
@@ -100,7 +100,9 @@ class IncidentChatViewController: UIViewController, UITableViewDelegate, UITable
 
         let sentMessage = Message(messageID: messageID, postedBy: postedBy, postedMessage: postedMessage!)
         
-        chatService.addMessage(message: sentMessage, notificationID: selectedIncident.pinDropId)
+        //chatService.addMessage(message: sentMessage, notificationID: selectedIncident.pinDropId)
+        
+        chatService.addMessageMaybe(message: sentMessage, notificationID: selectedIncident.pinDropId, docID: convertTimestamp())
         
         confirmAlert()
     }
