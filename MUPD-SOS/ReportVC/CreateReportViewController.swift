@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
 
 class CreateReportViewController: UIViewController {
     
@@ -41,7 +42,7 @@ class CreateReportViewController: UIViewController {
         
        // let newDocumentID = UUID().uuidString
        // print ("UNIQUE IDENTIFIER OF Report: \(newDocumentID)")
-       // let reportID = convertTimestamp()
+       // let reportID = newDocumentID
         
         mupdprofileService.getMUPDProfile(docID: userService.currentUser!.email) { [self] response in
             if (response) {
@@ -74,7 +75,7 @@ class CreateReportViewController: UIViewController {
     func convertTimestamp() -> String {
         let date = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm:ss"
+        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm:ss.SSSS"
         let currentTime = dateFormatter.string(from: date)
         return currentTime
     }

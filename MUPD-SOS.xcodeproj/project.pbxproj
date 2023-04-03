@@ -12,7 +12,6 @@
 		D8163DEB29B4E624003A25CC /* ReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8163DEA29B4E624003A25CC /* ReportTableViewCell.swift */; };
 		D8163DED29B4F392003A25CC /* OnDutyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8163DEC29B4F392003A25CC /* OnDutyViewController.swift */; };
 		D8163DEF29B50AD1003A25CC /* IncidentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8163DEE29B50AD1003A25CC /* IncidentsViewController.swift */; };
-		D81CA60529D610E4007E3600 /* IncidentsViewModes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81CA60429D610E4007E3600 /* IncidentsViewModes.swift */; };
 		D86D087229D229DA00E9B2DF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D087129D229DA00E9B2DF /* Message.swift */; };
 		D86D087529D229FA00E9B2DF /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D087429D229FA00E9B2DF /* ChatService.swift */; };
 		D86D1ABE29A3E5A70092A5D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D1ABD29A3E5A70092A5D7 /* AppDelegate.swift */; };
@@ -55,7 +54,6 @@
 		D8163DEA29B4E624003A25CC /* ReportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTableViewCell.swift; sourceTree = "<group>"; };
 		D8163DEC29B4F392003A25CC /* OnDutyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDutyViewController.swift; sourceTree = "<group>"; };
 		D8163DEE29B50AD1003A25CC /* IncidentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentsViewController.swift; sourceTree = "<group>"; };
-		D81CA60429D610E4007E3600 /* IncidentsViewModes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentsViewModes.swift; sourceTree = "<group>"; };
 		D86D087129D229DA00E9B2DF /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		D86D087429D229FA00E9B2DF /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 		D86D1ABA29A3E5A70092A5D7 /* MUPD-SOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MUPD-SOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,7 +115,6 @@
 		D8163DF029B50AD6003A25CC /* ChatVC */ = {
 			isa = PBXGroup;
 			children = (
-				D81CA60429D610E4007E3600 /* IncidentsViewModes.swift */,
 				D8163DEE29B50AD1003A25CC /* IncidentsViewController.swift */,
 				D8DD0C8329B532C400634014 /* IncidentChatViewController.swift */,
 				D8FF22C229C1265F007DCF97 /* ProfileViewController.swift */,
@@ -350,7 +347,6 @@
 				D8FF22C329C1265F007DCF97 /* ProfileViewController.swift in Sources */,
 				D8163DEF29B50AD1003A25CC /* IncidentsViewController.swift in Sources */,
 				D86D1ABE29A3E5A70092A5D7 /* AppDelegate.swift in Sources */,
-				D81CA60529D610E4007E3600 /* IncidentsViewModes.swift in Sources */,
 				D86D1AF129A3E8890092A5D7 /* Pin Drop.swift in Sources */,
 				D888371629B1826E0013176B /* ReportsViewController.swift in Sources */,
 				D8DD0C8429B532C400634014 /* IncidentChatViewController.swift in Sources */,

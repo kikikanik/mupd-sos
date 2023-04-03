@@ -19,6 +19,7 @@ struct Message {
 
     init?(data: [String: Any], documentID: String) {
         guard let messageID = documentID as? String,
+              //guard let reportID = documentID as String?,
               let postedBy = data["postedBy"] as? String,
               let postedMessage = data["postedMessage"] as? String else {
             return nil

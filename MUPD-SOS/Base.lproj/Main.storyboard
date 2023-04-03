@@ -548,7 +548,7 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="RegisterButton:" destination="KoB-eZ-rau" eventType="touchUpInside" id="qlb-vb-wyT"/>
-                                    <segue destination="Y0c-vD-VAh" kind="show" identifier="loginSuccess" id="UDn-yR-4NW"/>
+                                    <segue destination="Y0c-vD-VAh" kind="show" identifier="registerSuccess" id="UDn-yR-4NW"/>
                                 </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TqI-My-FaJ">
@@ -824,7 +824,7 @@
                             </barButtonItem>
                             <barButtonItem title="Item" image="person.crop.square.filled.and.at.rectangle" catalog="system" id="Igp-mm-Rt0">
                                 <connections>
-                                    <segue destination="meE-i1-2f8" kind="show" id="hRh-Sh-0Su"/>
+                                    <segue destination="meE-i1-2f8" kind="show" identifier="profileSegue" id="hRh-Sh-0Su"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -901,7 +901,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ABC-Gg-LRM"/>
+        <segue reference="UDn-yR-4NW"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="doc.badge.plus" catalog="system" width="116" height="128"/>

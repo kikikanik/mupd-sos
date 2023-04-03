@@ -1,12 +1,7 @@
-//
-//  ProfileService.swift
-//  MU-SOSMainApp
-//
-//
-
 import Foundation
 import FirebaseFirestore
 import Firebase
+import UIKit
 
 
 class ProfileService {
@@ -58,32 +53,21 @@ class ProfileService {
     }
         
     func addProfileInfo(currentUser: Profile, completionHandler: @escaping (Bool) -> Void) {
-       
         let uid = userService.currentUser!.documentID!
-        
-        self.findProfile(withID: uid) {(result, existingProfile) in
-            if result {
-                self.existingProfile = existingProfile
-                completionHandler(true)
-            }
-            else {
-                completionHandler(false)
-            }
-        }
         print ("UNIQUE IDENTIFIER OF USER: \(uid)")
         self.addProfile(profile: currentUser, docID: uid)
     }
     
-  /*
-    func getProfile(userID: String, completionHandler: @escaping (Bool) -> Void) {
-        let userID = existingProfile.userID
+    func getProfile(docID: String, completionHandler: @escaping (Bool) -> Void) {
+        let docID = userService.currentUser!.documentID!
         
-        self.findProfile(withID: userID) {(result, existingProfile) in
+        self.findProfile(withID: docID) {(result, existingProfile) in
             if result {
                 self.existingProfile = existingProfile
-                self.fsCollection.document(userID).getDocument {
+                self.fsCollection.document(docID).getDocument {
+                    
                     (document, error) in
-                    print("GETTING THIS DOCUMENT WITH ID: \(userID)")
+                    print("GETTING THIS DOCUMENT WITH ID: \(docID)")
                     print("HERE IS THE PROFILE INFO!: \(existingProfile)")
                     completionHandler(true)
                 }
@@ -92,15 +76,7 @@ class ProfileService {
                 print("NO DOCUMENT TO GRAB!")
                 completionHandler(false)
             }
-            
         }
-        
-    }
-   */
-    
-    func getProfileInfo(profile: Profile) {
-        let uid = userService.currentUser!.documentID!
-        print("UNIQUE IDENTIFIER OF USER: \(uid)")
     }
     
     func observeProfile(currentUser: Profile, completionHandler: @escaping (Bool) -> Void) {
@@ -126,16 +102,12 @@ class ProfileService {
                             completionHandler(false)
                         }
                     }
-                    
-                        self.profile.append(existingProfile!)
-                        print("PROFILES GRABBED \(existingProfile)")
-                        print(profile)
-
+                    self.profile.append(existingProfile!)
+                    print("PROFILES GRABBED \(existingProfile)")
+                    print(profile)
                 }
                 NotificationCenter.default.post(name: Notification.Name(rawValue: kSOSProfilesChanged), object: self)
             }
-            
         }
     }
-    
 }

@@ -17,7 +17,6 @@ struct MUPDProfile: Codable {
     
     init(userID: String, title: String, fullName: String, badge: String, onDuty: String) {
         //constructs the Profile Object
-    
         self.userID = userID
         self.title = title
         self.fullName = fullName
@@ -33,7 +32,6 @@ struct MUPDProfile: Codable {
               let onDuty = data["onDuty"] as? String else {
             return nil
         }
-       // self.documentID = documentID
         self.userID = userID
         self.title = title
         self.fullName = fullName

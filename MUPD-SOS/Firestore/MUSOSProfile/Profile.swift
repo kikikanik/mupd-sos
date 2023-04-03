@@ -1,12 +1,5 @@
-//
-//  Profile.swift
-//  MU-SOSMainApp
-//
-//  Created by Amanda Gallaro on 12/19/22.
-//
 
 import Foundation
-import UIKit
 
 struct Profile: Codable {
     //var documentID: String?
@@ -25,15 +18,10 @@ struct Profile: Codable {
     var medicalConditions: String
     var phone: String
     var schoolAddress: String
-    var title: String
     var weight: String
     
-    
-    
-    init(userID: String, allergies: String, dob: String, emerContName: String, emerContPhone: String, emerContRelat: String, eyeColor: String, firstName: String, hairColor: String, height: String, homeAddress: String, lastName: String, medicalConditions: String, phone: String, schoolAddress: String, title: String, weight: String) {
+    init(userID: String, allergies: String, dob: String, emerContName: String, emerContPhone: String, emerContRelat: String, eyeColor: String, firstName: String, hairColor: String, height: String, homeAddress: String, lastName: String, medicalConditions: String, phone: String, schoolAddress: String, weight: String) {
         //constructs the Profile Object
-        
-      
         self.userID = userID
         self.allergies = allergies
         self.dob = dob
@@ -49,7 +37,6 @@ struct Profile: Codable {
         self.medicalConditions = medicalConditions
         self.phone = phone
         self.schoolAddress = schoolAddress
-        self.title = title
         self.weight = weight
     }
     
@@ -69,11 +56,9 @@ struct Profile: Codable {
               let medicalConditions = data["medicalConditions"] as? String,
               let phone = data["phone"] as? String,
               let schoolAddress = data["schoolAddress"] as? String,
-              let title = data["title"] as? String,
               let weight = data["weight"] as? String else {
             return nil
         }
-       // self.documentID = documentID
         self.userID = userID
         self.allergies = allergies
         self.dob = dob
@@ -89,10 +74,8 @@ struct Profile: Codable {
         self.medicalConditions = medicalConditions
         self.phone = phone
         self.schoolAddress = schoolAddress
-        self.title = title
         self.weight = weight
     }
-    
     
     func createProfileDict() -> [String: Any] {
         return ["userID": self.userID,
@@ -110,7 +93,6 @@ struct Profile: Codable {
                 "medicalConditions": self.medicalConditions,
                 "phone": self.phone,
                 "schoolAddress": self.schoolAddress,
-                "title": self.title,
                 "weight": self.weight
         ]
     }

@@ -1,10 +1,3 @@
-//
-//  ReportService.swift
-//  ReportDemo
-//
-//  Created by Kinneret Kanik on 20/02/2023.
-//
-
 import Foundation
 import FirebaseFirestore
 import Firebase

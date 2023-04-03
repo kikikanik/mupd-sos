@@ -38,8 +38,7 @@ class PinDropDetailViewController: UIViewController, UITableViewDelegate, UITabl
         print("!!!!selectedItem.pinDropId: ")
         print(selectedItem.pinDropId)
        
-        /*
-        profileService.getProfile(userID: selectedItem.userID) { response in
+        profileService.getProfile(docID: selectedItem.userID) { response in
             if (response) {
                 let firstname = self.profileService.existingProfile.firstName
                 let lastname = self.profileService.existingProfile.lastName
@@ -50,15 +49,17 @@ class PinDropDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 print("NO EXISTING PROFILE TO SHOW!!!")
             }
         }
-         */
+    
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return section == 0 ? 6 : 2
     }
+    
    func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return section == 0 ? "Incident Information" : "Profile Info on Reporter"
     }

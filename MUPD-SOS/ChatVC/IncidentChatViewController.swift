@@ -22,13 +22,13 @@ class IncidentChatViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLoad()
         messagesTable.delegate = self
         messagesTable.dataSource = self
-        self.title = selectedIncident.userID
+        self.title = selectedIncident?.userID
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(messagesReceived), name: Notification.Name(rawValue: kSOSMessagesChanged), object: nil)
-        chatService.observeChat(notificationID: selectedIncident.pinDropId)
+        chatService.observeChat(notificationID: selectedIncident!.pinDropId)
     }
     
     @objc
@@ -69,7 +69,7 @@ class IncidentChatViewController: UIViewController, UITableViewDelegate, UITable
     func convertTimestamp() -> String {
         let date = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm:ss"
+        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm:ss.SSSS"
         let currentTime = dateFormatter.string(from: date)
         return currentTime
     }
@@ -91,11 +91,10 @@ class IncidentChatViewController: UIViewController, UITableViewDelegate, UITable
         //@IBAction func sendButton(_ sender: Any) {
         print("You have pressed the send button!")
        
+        
         let messageID = convertTimestamp()
         
         let postedBy = userService.currentUser!.email
-
-     //guard let postedMessage = newMessage.text else { return  }
                 
         let postedMessage = newMessage?.text
 
@@ -104,5 +103,20 @@ class IncidentChatViewController: UIViewController, UITableViewDelegate, UITable
         chatService.addMessage(message: sentMessage, notificationID: selectedIncident.pinDropId)
         
         confirmAlert()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+        if selectedIncident != nil {
+            if(segue.identifier == "profileSegue") {
+                let dvc = segue.destination as! ProfileViewController
+                dvc.selectedUserID = selectedIncident.userID
+                print("reporter's doc id & email: ")
+                print(selectedIncident!.userID)
+                print("reporter's doc id & email local: ")
+                print(dvc.selectedUserID)
+            }
+        }
     }
 }

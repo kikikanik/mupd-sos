@@ -15,7 +15,7 @@ class MUPDProfileService {
     
     let userService = UserService.shared
     
-    let fsCollection = Firestore.firestore().collection("mupdprofile")
+    let fsCollection = Firestore.firestore().collection("mupdProfile")
     
     var MUPDProfiles: [MUPDProfile] = []
     var existingMUPDProfile: MUPDProfile!
@@ -27,7 +27,7 @@ class MUPDProfileService {
     }
     
     func addMUPDProfile(MUPDProfiles: MUPDProfile, docID: String) {
-        var docID = userService.currentUser!.email
+        let docID = userService.currentUser!.email
         
         fsCollection.document(docID).setData(MUPDProfiles.createMUPDProfileDict()) {
             err in
@@ -47,6 +47,7 @@ class MUPDProfileService {
         
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
+                //ask Lak about changing documentID: document.documentID to userService.currentUser!.email
                 if let aProfile = MUPDProfile(data: document.data()!, documentID: document.documentID) {
                     mupdProfile = aProfile
                     print ("DOCUMENT/USER EXISTS!: \(document)")
@@ -78,7 +79,7 @@ class MUPDProfileService {
     }
     
     func getMUPDProfile(docID: String, completionHandler: @escaping (Bool) -> Void) {
-        let docID = userService.currentUser!.documentID!
+        let docID = userService.currentUser!.email
         
         self.findMUPDProfile(withID: docID) {(result, existingMUPDProfile) in
             if result {
@@ -100,7 +101,6 @@ class MUPDProfileService {
     }
     
     //func here to get all the notifications from firestore
-    //amanda has a diff one - but this one works man 
     func observeMUPDProfiles() {
         
         fsCollection.addSnapshotListener { [self] (querySnapshot, err) in

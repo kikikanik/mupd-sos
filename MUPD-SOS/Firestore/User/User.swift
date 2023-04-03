@@ -21,7 +21,6 @@ struct User: Identifiable, Codable {            //creating the User Object
         self.email = email
         self.tac = tac
         self.userType = userType
-       // self.username = username
     }
     
     init?(data: [String: Any], documentID: String) {
@@ -36,7 +35,7 @@ struct User: Identifiable, Codable {            //creating the User Object
         self.email = email
         self.tac = tac
         self.userType = userType
-       // self.username = username
+        
     }
     
   

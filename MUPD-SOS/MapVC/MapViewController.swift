@@ -183,7 +183,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             if(segue.identifier == "notificationSegue") {
                 let dvc = segue.destination as! PinDropDetailViewController
                 dvc.selectedItem = pinDropService.getPinDropInfo(forPinDropId: selectedNotificationAnnotation!.pinDropID)
-
+                print("reporter email (user id): ")
+                print(dvc.selectedItem!.userID)
                 print("pindrop id: ")
                 print(selectedNotificationAnnotation!.pinDropID)
             }

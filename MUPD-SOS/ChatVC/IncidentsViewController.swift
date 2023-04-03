@@ -13,16 +13,13 @@ class IncidentsViewController: UIViewController, UITableViewDelegate, UITableVie
     let mupdprofileService = MUPDProfileService.shared
     let pindropService = PinDropService.shared
     
-    var incidents: [PinDrop] = [] //njCountiesSorted or shapeList
+    var openIncidents: [PinDrop] = [] //njCountiesSorted or shapeList
+    var closedIncidents: [PinDrop] = [] //njCountiesSorted or shapeList
     var selectedIncident: PinDrop?
    
-    // model variable - variable to instantiate the model
-    //var incidentsViewModel = Menu (currentMode: IncidentsViewModes.all)
     
     @IBOutlet var incidentsTableView: UITableView!
-    
-   // @IBOutlet weak var modeSelection: UIBarButtonItem!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         incidentsTableView.delegate = self
@@ -38,47 +35,49 @@ class IncidentsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @objc
     func notificationsReceived() {
-        incidents.removeAll()
+        openIncidents.removeAll()
+        closedIncidents.removeAll()
         for incident in pindropService.notifications {
-            let incident = PinDrop(acceptedNotif: incident.acceptedNotif, identity: incident.identity, importance: incident.importance, userCoordinateLat: incident.userCoordinateLat, pinDropId: incident.pinDropId, userCoordinateLong: incident.userCoordinateLong, reportedLocationLat: incident.reportedLocationLat, reportedLocationLong: incident.reportedLocationLong, notifName: incident.notifName, state: incident.state, submit: incident.submit, timestamp: incident.timestamp, userID: incident.userID)
-            
-            incidents.append(incident)
+            if (incident.state == true) {
+                let incident = PinDrop(acceptedNotif: incident.acceptedNotif, identity: incident.identity, importance: incident.importance, userCoordinateLat: incident.userCoordinateLat, pinDropId: incident.pinDropId, userCoordinateLong: incident.userCoordinateLong, reportedLocationLat: incident.reportedLocationLat, reportedLocationLong: incident.reportedLocationLong, notifName: incident.notifName, state: incident.state, submit: incident.submit, timestamp: incident.timestamp, userID: incident.userID)
+                
+                openIncidents.append(incident)
+            } else {
+                let incident = PinDrop(acceptedNotif: incident.acceptedNotif, identity: incident.identity, importance: incident.importance, userCoordinateLat: incident.userCoordinateLat, pinDropId: incident.pinDropId, userCoordinateLong: incident.userCoordinateLong, reportedLocationLat: incident.reportedLocationLat, reportedLocationLong: incident.reportedLocationLong, notifName: incident.notifName, state: incident.state, submit: incident.submit, timestamp: incident.timestamp, userID: incident.userID)
+                closedIncidents.append(incident)
+            }
         }
         incidentsTableView.reloadData()
     }
-  /*
-    func setupModeMenu() {
-        let allIncidents = UIAction(title:"All Incidents") { (action) in self.selectMode (mode: .all)
-        }
-        let activeIncidents = UIAction(title:"Active Incidents") { (action) in self.selectMode(mode: .active)
-        }
-        let closedIncidents = UIAction(title:"Closed Incidents") { (action) in self.selectMode(mode: .closed)
-        }
-        let menu = UIMenu (title: "View Incidents", children: [allIncidents, activeIncidents, closedIncidents])
-        modeSelection.menu = menu
-        modeSelection.primaryAction = nil
-    }
-    
-    func selectMode(mode: IncidentsViewModes) {
-        incidentsViewModel.currentMode = mode
-        self.title = incidentsViewModel.currentMode.rawValue + "Incidents"
-    }
-    */
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return incidents.count
+        return section == 0 ? openIncidents.count : closedIncidents.count
     }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+         return 2
+     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return section == 0 ? "Open Incidents" : "Closed Incidents"
+    }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "incidentCell", for: indexPath)
         
-        let thisIncident = incidents[indexPath.row]
-        
-        cell.textLabel?.text = thisIncident.notifName
-        cell.detailTextLabel?.text = thisIncident.userID
-
-        return cell
+        if indexPath.section == 0 {
+            let thisIncident = openIncidents[indexPath.row]
+            cell.textLabel?.text = thisIncident.notifName
+            cell.detailTextLabel?.text = thisIncident.userID
+            return cell
+        } else {
+            let thisIncident = closedIncidents[indexPath.row]
+            cell.textLabel?.text = thisIncident.notifName
+            cell.detailTextLabel?.text = thisIncident.userID
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -95,11 +94,16 @@ class IncidentsViewController: UIViewController, UITableViewDelegate, UITableVie
             let indexPath = self.incidentsTableView.indexPathForSelectedRow!
             
             let tableViewDetail = segue.destination as? IncidentChatViewController
-            
-            let selectedIncident = incidents[indexPath.row]
-            
-            tableViewDetail!.selectedIncident = selectedIncident
-            
+             
+            if (selectedIncident?.state == true) {
+                let selectedIncident = openIncidents[indexPath.row]
+                tableViewDetail!.selectedIncident = selectedIncident
+                self.incidentsTableView.deselectRow(at: indexPath, animated: true)
+            } else {
+                let selectedIncident = closedIncidents[indexPath.row]
+                tableViewDetail!.selectedIncident = selectedIncident
+                self.incidentsTableView.deselectRow(at: indexPath, animated: true)
+            }
             self.incidentsTableView.deselectRow(at: indexPath, animated: true)
         }
     }
