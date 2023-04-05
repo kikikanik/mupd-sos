@@ -114,6 +114,7 @@ class IncidentChatViewController: UIViewController, UITableViewDelegate, UITable
             if(segue.identifier == "profileSegue") {
                 let dvc = segue.destination as! ProfileViewController
                 dvc.selectedUserID = selectedIncident.userID
+                dvc.selectedProfile = profileService.getProfileInfo(userID: selectedIncident.userID)
                 print("reporter's doc id & email: ")
                 print(selectedIncident!.userID)
                 print("reporter's doc id & email local: ")

@@ -11,7 +11,7 @@ class ProfileService {
     
     let fsCollection = Firestore.firestore().collection("profile")  //initializing "profile" collection in Firestore
     
-    var profile: [Profile] = []
+    var profiles: [Profile] = []
     var existingProfile: Profile!
     
     var currentUser: User!
@@ -79,13 +79,21 @@ class ProfileService {
         }
     }
     
+    func getProfileInfo(userID id: String) -> Profile? {
+        if let index = (profiles).firstIndex(where: {$0.userID == id}) {
+            print("We got correct profile!")
+            return profiles[index]
+        }
+        return nil;
+    }
+    
     func observeProfile(currentUser: Profile, completionHandler: @escaping (Bool) -> Void) {
         
         let uid = userService.currentUser!.documentID!
         
         fsCollection.addSnapshotListener { [self]
             (querySnapshot, err) in
-            profile.removeAll()
+            profiles.removeAll()
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
@@ -102,9 +110,9 @@ class ProfileService {
                             completionHandler(false)
                         }
                     }
-                    self.profile.append(existingProfile!)
+                    self.profiles.append(existingProfile!)
                     print("PROFILES GRABBED \(existingProfile)")
-                    print(profile)
+                    print(profiles)
                 }
                 NotificationCenter.default.post(name: Notification.Name(rawValue: kSOSProfilesChanged), object: self)
             }

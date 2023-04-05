@@ -42,8 +42,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         //self.title = selectedProfile.userID
         print("selected user id: ")
         print(selectedUserID)
+        print("")
         
-        profileService.getProfile(docID: selectedUserID) { response in
+       // profileService.getProfile(docID: selectedUserID) { response in
+        profileService.getProfile(docID: "jordan@gmail.com") { response in
             if (response) {
                 let fullname = self.profileService.existingProfile.firstName + self.profileService.existingProfile.lastName
                 print(fullname)

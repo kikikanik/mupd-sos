@@ -1,11 +1,10 @@
-//
-//  RegisterViewController.swift
-//  MUPD-SOS
-//
-//  Created by Kinneret Kanik on 28/02/2023.
-//
 
+
+
+
+import Foundation
 import UIKit
+
 
 class RegisterPageViewController: UIViewController {
     
@@ -15,6 +14,7 @@ class RegisterPageViewController: UIViewController {
         super.viewDidLoad()
     }
 
+    
     @IBOutlet var EmailInput: UITextField!
     @IBOutlet var PasswordInput: UITextField!
     
@@ -39,6 +39,11 @@ class RegisterPageViewController: UIViewController {
         present (alert, animated: true)
     }
     
+    
+    @IBAction func userType(_ sender: UISegmentedControl) {
+        selectUserType = sender.selectedSegmentIndex
+    }
+    
     @IBAction func RegisterButton(_ sender: UIButton) {
         
         guard let email = EmailInput.text, !email.isEmpty else {
@@ -51,9 +56,11 @@ class RegisterPageViewController: UIViewController {
             print ("Password field is empty!");
             return
         }
-        
-        let userType = "MUPD"
-        
+        guard let userType = selectUserType == 0 ? "Student" : "Faculty", !userType.isEmpty else {
+            alertEmptyFields()
+            print("User Type is empty!")
+            return
+        }
         let newUser = User(id: email, email: email, tac: false, userType: userType);
         userService.registerUser(email: email, password: password, currentUser: newUser) { [self] response in
             if (!response) {
