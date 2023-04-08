@@ -2,8 +2,6 @@
 //  ReportsViewController.swift
 //  MUPD-SOS
 //
-//  Created by Kinneret Kanik on 02/03/2023.
-//
 
 import UIKit
 
@@ -20,10 +18,6 @@ class ReportsViewController: UIViewController {
     
     @IBOutlet var reportsTableView: UITableView!
         
-    /*
-     The difference between viewDidAppear and viewDidLoad is that viewDidAppear is called every time you land on the screen while viewDidLoad is only called once which is when the app loads.
-     */
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         reportsTableView.delegate = self
@@ -54,7 +48,6 @@ class ReportsViewController: UIViewController {
         if (segue.identifier == "createReportSegue") {
             let dvc = segue.destination as! CreateReportViewController
         }
-        
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if(segue.identifier == "detailSegue")
@@ -101,18 +94,33 @@ extension ReportsViewController: UITableViewDataSource {
         cell.emergencyType?.text = thisReport.emergencyType
         cell.postedByLabel?.text = thisReport.postedBy
         
-        switch (thisReport.emergencyType) {
-            case "Medical":
-                cell.imageView?.image = UIImage(named: "medical")
-             case "Traffic":
-             cell.imageView?.image = UIImage(named: "carproblem")
-             case "Weather":
-             cell.imageView?.image = UIImage(named: "weather")
-             case "Inclement Weather":
-             cell.imageView?.image = UIImage(named: "weather")
-             default:
+    switch (thisReport.emergencyType) {
+        
+        case "Medical Emergency":
+            cell.imageView?.image = UIImage(named: "medical")
+        case "Car Hazard":
+            cell.imageView?.image = UIImage(named: "carhazard")
+        case "Car Accident":
+            cell.imageView?.image = UIImage(named: "accident")
+        case "Weather":
+            cell.imageView?.image = UIImage(named: "weather")
+        case "Inclement Weather":
+            cell.imageView?.image = UIImage(named: "weather")
+        case "Active Shooter":
+            cell.imageView?.image = UIImage(named: "shooter")
+        case "Fire":
+            cell.imageView?.image = UIImage(named: "fire")
+        case "Gas Leak":
+            cell.imageView?.image = UIImage(named: "gas")
+        case "Mental Emergency":
+            cell.imageView?.image = UIImage(named: "mental")
+        case "Rabid Animal":
+            cell.imageView?.image = UIImage(named: "rabidanimal")
+        case "Suspicious Person":
+            cell.imageView?.image = UIImage(named: "susperson")
+        default:
              cell.imageView?.image = UIImage(named: "mupdsos")
-             }
+        }
          
         return cell
         

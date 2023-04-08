@@ -2,8 +2,6 @@
 //  User Service.swift
 //  MUPD-SOS
 //
-//  Created by Kinneret Kanik on 20/02/2023.
-//
 import Foundation
 import FirebaseAuth
 import FirebaseFirestore
@@ -58,7 +56,6 @@ class UserService {
     //Firebase Authentication Methods
     func registerUser(email: String, password: String, currentUser: User, completionHandler: @escaping (Bool) -> Void) {
         print ("New Registered User: \(email) \(password)")  //print email and password of registered User in console!
-        
         
         auth.createUser(withEmail: email, password: password) {[weak self]
             authResult, error in

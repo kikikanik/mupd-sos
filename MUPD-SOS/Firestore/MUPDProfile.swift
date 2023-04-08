@@ -2,13 +2,10 @@
 //  Profile.swift
 //  MUPD-SOS
 //
-//  Created by Kinneret Kanik on 01/03/2023.
-//
 
 import Foundation
 
 struct MUPDProfile: Codable {
-    //var documentID: String?
     var userID: String    //using this id to connect to id under User object
     var title: String
     var fullName: String
@@ -38,7 +35,6 @@ struct MUPDProfile: Codable {
         self.badge = badge
         self.onDuty = onDuty
     }
-    
     
     func createMUPDProfileDict() -> [String: Any] {
         return ["userID": self.userID,

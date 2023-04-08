@@ -2,8 +2,6 @@
 //  MUPDProfileViewController.swift
 //  MUPD-SOS
 //
-//  Created by Kinneret Kanik on 02/03/2023.
-//
 
 import UIKit
 import FirebaseAuth
@@ -65,8 +63,10 @@ class MUPDProfileViewController: UIViewController, UITextFieldDelegate {
         
         do {
             try FirebaseAuth.Auth.auth().signOut()
+           // self.navigationController?.dismiss(animated: false)
+            performSegue(withIdentifier: "unwindToOpeningPage", sender: self)
             print("Successful log out!")
-            
+            /*
             UserDefaults.standard.setValue(nil, forKey: "email")
             UserDefaults.standard.setValue(nil, forKey: "id")
             UserDefaults.standard.setValue(nil, forKey: "userID")
@@ -74,6 +74,11 @@ class MUPDProfileViewController: UIViewController, UITextFieldDelegate {
             let storyBoard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let newViewController = storyBoard.instantiateViewController(withIdentifier: "Main") as! OpeningPageViewController
             self.present(newViewController, animated: true, completion: nil)
+            //unwind when log out, instead of just 'layer' another login
+            //not managing objects correctly
+            //unwind
+            //implenment method in login, that it clears everything once you open the app
+             */
         }
         catch {
             print("Failed to log out")
@@ -140,7 +145,5 @@ class MUPDProfileViewController: UIViewController, UITextFieldDelegate {
         print("PROFILE SAVED TO DATABASE!")
         
         confirmAlert()
-        
     }
-    
 }

@@ -2,8 +2,6 @@
 //  AnnotationTypes.swift
 //  MUPD-SOS
 //
-//  Created by Kinneret Kanik on 02/03/2023.
-//
 
 import Foundation
 

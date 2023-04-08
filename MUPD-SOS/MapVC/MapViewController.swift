@@ -2,8 +2,6 @@
 //  ViewController.swift
 //  MapDemo4Lak
 //
-//  Created by Kinneret Kanik on 08/02/2023.
-//
 
 import UIKit
 import MapKit
@@ -26,13 +24,18 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     //arrays to hold each Annotation
     var notificationAnnotations:[NotificationAnnotation] = []
+    
+    var profileAnnotations: [ProfileAnnotation] = []
+    var selectedProfileAnnotation: ProfileAnnotation?
    
     var selectedNotificationAnnotation: NotificationAnnotation?
     
     var editedPinDrop: PinDrop?
 
-    let pinColors:[UIColor] = [.yellow, .green, .red]
+    let pinColors:[UIColor] = [.red, .orange, .yellow]
 
+    
+    var selectedItem: PinDrop!
     
     //mapView outlet
     @IBOutlet weak var mapView: MKMapView!
@@ -51,10 +54,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         setUpMap()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(notificationsReceived), name: Notification.Name(rawValue:  kSOSNotificaionsChanged), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(notificationsReceived), name: Notification.Name(rawValue:  kSOSNotificationsChanged), object: nil)
         
         pinDropService.observeNotifications()
-        //NotificationCenter.default.post(name: Notification.Name(rawValue:  kSOSNotificaionsChanged), object: self)
     
     }
     
@@ -102,16 +104,20 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                         pindropImageView.setBackgroundImage(UIImage(named: "gas"), for: UIControl.State())
                     case "Car Accident":
                         pindropImageView.setBackgroundImage(UIImage(named: "accident"), for: UIControl.State())
-                    case "Car Problem":
-                        pindropImageView.setBackgroundImage(UIImage(named: "carproblem"), for: UIControl.State())
+                    case "Car Hazard":
+                        pindropImageView.setBackgroundImage(UIImage(named: "carhazard"), for: UIControl.State())
                     case "Suspicious Person":
                         pindropImageView.setBackgroundImage(UIImage(named: "susperson"), for: UIControl.State())
                     case "Active Shooter":
                         pindropImageView.setBackgroundImage(UIImage(named: "shooter"), for: UIControl.State())
                     case "Rabid Animal":
                         pindropImageView.setBackgroundImage(UIImage(named: "rabidanimal"), for: UIControl.State())
+                    case "Fire":
+                        pindropImageView.setBackgroundImage(UIImage(named: "fire"), for: UIControl.State())
+                   // case "Report Other":
+                   //     pindropImageView.setBackgroundImage(UIImage(named: "reportother"), for: UIControl.State())
                     default:
-                        pindropImageView.setBackgroundImage(UIImage(systemName: "musos"), for: UIControl.State())
+                        pindropImageView.setBackgroundImage(UIImage(named: "reportother"), for: UIControl.State())
                     }
                 } else {
                     pindropImageView.setBackgroundImage(UIImage(systemName: "questionmark.square.dashed"), for: UIControl.State())
@@ -119,12 +125,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 let pindropColor = thisAnnotation.color
                 if let _ = thisAnnotation.importance {
                     switch thisAnnotation.importance! {
-                    case 1:
-                        thisAnnotation.color = .yellow
-                    case 2:
-                        thisAnnotation.color = .orange
-                    case 3:
+                    case 0:
                         thisAnnotation.color = .red
+                    case 1:
+                        thisAnnotation.color = .orange
+                    case 2:
+                        thisAnnotation.color = .yellow
                     default:
                         thisAnnotation.color = .blue
                     }
@@ -156,14 +162,34 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         for notification in pinDropService.notifications {
             //coordinates & userID
-            if (notification.state == true) {
-                let pin = NotificationAnnotation(title: notification.notifName, subtitle: notification.identity, coordinate: CLLocationCoordinate2D(latitude: notification.reportedLocationLat, longitude: notification.reportedLocationLong), color: (notification.importance == 1) ? UIColor.red : UIColor.yellow, pinDropID: notification.pinDropId, importance: notification.importance)
-                notificationAnnotations.append(pin)
-            }
+                if (notification.state == true) {
+                    let pin = NotificationAnnotation(title: notification.notifName, subtitle: notification.identity, coordinate: CLLocationCoordinate2D(latitude: notification.reportedLocationLat, longitude: notification.reportedLocationLong), color: (notification.importance == 0) ? UIColor.red : UIColor.yellow, pinDropID: notification.pinDropId, importance: notification.importance)
+                    
+                    notificationAnnotations.append(pin)
+                }
         }
         mapView.reloadInputViews() //reload data
         mapView.addAnnotations(notificationAnnotations)
     }
+    
+    
+    @objc
+    func profilesReceived() {
+        profileAnnotations.removeAll()
+        
+        mapView.removeAnnotations(mapView.annotations)
+        
+        for profile in profileService.profiles {
+            let profilePin = ProfileAnnotation(profileID: profile.userID, coordinate: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0))
+            
+            profileAnnotations.append(profilePin)
+        }
+        
+        mapView.reloadInputViews()
+        mapView.addAnnotations(profileAnnotations)
+        
+    }
+    
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if view.leftCalloutAccessoryView == control {
@@ -187,8 +213,23 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 print(dvc.selectedItem!.userID)
                 print("pindrop id: ")
                 print(selectedNotificationAnnotation!.pinDropID)
+                
+                dvc.selectedProfileID = dvc.selectedItem!.userID
             }
         }
+        
+//        if selectedProfileAnnotation != nil {
+//            if(segue.identifier == "notificationSegue") {
+//                let dvc = segue.destination as! PinDropDetailViewController
+//
+//
+//
+//                //need to add profile info here
+//                dvc.selectedIncidentProfile = profileService.getProfileInfo(userID: selectedProfileAnnotation!.profileID)
+//                print("reporter profile id: ")
+//                print(dvc.selectedIncidentProfile!.userID)
+//            }
+//        }
+       
     }
-
 }

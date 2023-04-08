@@ -1,7 +1,3 @@
-
-
-
-
 import Foundation
 import UIKit
 
@@ -56,12 +52,12 @@ class RegisterPageViewController: UIViewController {
             print ("Password field is empty!");
             return
         }
-        guard let userType = selectUserType == 0 ? "Student" : "Faculty", !userType.isEmpty else {
-            alertEmptyFields()
-            print("User Type is empty!")
-            return
-        }
-        let newUser = User(id: email, email: email, tac: false, userType: userType);
+//        guard let userType = selectUserType == 0 ? "Student" : "Faculty", !userType.isEmpty else {
+//            alertEmptyFields()
+//            print("User Type is empty!")
+//            return
+//        }
+        let newUser = User(id: email, email: email, tac: false, userType: "MUPD");
         userService.registerUser(email: email, password: password, currentUser: newUser) { [self] response in
             if (!response) {
                 alertRegistration()

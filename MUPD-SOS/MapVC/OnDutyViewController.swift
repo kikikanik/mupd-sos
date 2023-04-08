@@ -2,8 +2,6 @@
 //  OnDutyViewController.swift
 //  MUPD-SOS
 //
-//  Created by Kinneret Kanik on 05/03/2023.
-//
 
 import UIKit
 
@@ -118,5 +116,4 @@ class OnDutyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         ondutytableView.reloadData()
     }
-
 }

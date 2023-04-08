@@ -2,8 +2,6 @@
 //  MUPDProfileService.swift
 //  MUPD-SOS
 //
-//  Created by Kinneret Kanik on 01/03/2023.
-//
 
 import Foundation
 import FirebaseFirestore
@@ -47,7 +45,6 @@ class MUPDProfileService {
         
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
-                //ask Lak about changing documentID: document.documentID to userService.currentUser!.email
                 if let aProfile = MUPDProfile(data: document.data()!, documentID: document.documentID) {
                     mupdProfile = aProfile
                     print ("DOCUMENT/USER EXISTS!: \(document)")

@@ -2,7 +2,6 @@
 import Foundation
 
 struct Profile: Codable {
-    //var documentID: String?
     var userID: String    //using this id to connect to id under User object
     var allergies: String
     var dob: String

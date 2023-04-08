@@ -36,7 +36,6 @@ class ReportService {
         }
         return nil;
     }
-     
     //func here to get all the notifications from firestore
     func observeReports () {
         

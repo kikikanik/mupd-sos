@@ -2,8 +2,6 @@
 //  User.swift
 //  MUPD-SOS
 //
-//  Created by Kinneret Kanik on 20/02/2023.
-//
 
 import Foundation
 
@@ -13,8 +11,6 @@ struct User: Identifiable, Codable {            //creating the User Object
     var email: String
     var tac: Bool
     var userType: String
-  //  var username: String
-    
     
    init(id: String, email: String, tac: Bool, userType: String) {    //constructs the User Object
         self.id = id
@@ -37,8 +33,6 @@ struct User: Identifiable, Codable {            //creating the User Object
         self.userType = userType
         
     }
-    
-  
     
     func asDictionary() -> [String: Any] {
         return ["id": self.id,

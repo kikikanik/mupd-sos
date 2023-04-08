@@ -2,8 +2,6 @@
 //  Chat.swift
 //  MUPD-SOS
 //
-//  Created by Kinneret Kanik on 27/03/2023.
-//
 import Foundation
 import Firebase
 import FirebaseFirestore

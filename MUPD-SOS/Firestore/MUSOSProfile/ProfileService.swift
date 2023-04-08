@@ -3,7 +3,6 @@ import FirebaseFirestore
 import Firebase
 import UIKit
 
-
 class ProfileService {
     static let shared = ProfileService()
     
@@ -12,7 +11,7 @@ class ProfileService {
     let fsCollection = Firestore.firestore().collection("profile")  //initializing "profile" collection in Firestore
     
     var profiles: [Profile] = []
-    var existingProfile: Profile!
+    var existingProfile: Profile?
     
     var currentUser: User!
     
@@ -59,23 +58,31 @@ class ProfileService {
     }
     
     func getProfile(docID: String, completionHandler: @escaping (Bool) -> Void) {
-        let docID = userService.currentUser!.documentID!
         
-        self.findProfile(withID: docID) {(result, existingProfile) in
-            if result {
-                self.existingProfile = existingProfile
-                self.fsCollection.document(docID).getDocument {
-                    
-                    (document, error) in
-                    print("GETTING THIS DOCUMENT WITH ID: \(docID)")
-                    print("HERE IS THE PROFILE INFO!: \(existingProfile)")
-                    completionHandler(true)
-                }
-            }
-            else {
-                print("NO DOCUMENT TO GRAB!")
-                completionHandler(false)
-            }
+        fsCollection.whereField("userID", isEqualTo: docID).getDocuments {
+            (document, error) in
+            
+                    self.findProfile(withID: docID) {(result, existingProfile) in
+                        if result {
+                            self.existingProfile = existingProfile
+                            self.fsCollection.document(docID).getDocument {
+            
+                                (document, error) in
+                                print("GETTING THIS DOCUMENT WITH ID: \(docID)")
+                                print("HERE IS THE PROFILE INFO!: \(existingProfile)")
+                                completionHandler(true)
+            
+                            }
+                        }
+                        else {
+                            print("NO DOCUMENT TO GRAB!")
+                            completionHandler(false)
+            
+                        }
+                    }
+            
+            print("GETTING THIS DOCUMENT WITH ID: \(docID)")
+            print("HERE IS THE PROFILE INFO!: \(self.existingProfile)")
         }
     }
     

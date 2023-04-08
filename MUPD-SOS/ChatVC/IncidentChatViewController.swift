@@ -1,9 +1,7 @@
 //
 //  IncidentDetailViewController.swift
 //  MUPD-SOS
-//  Created by Kinneret Kanik on 05/03/2023.
 //
-
 import UIKit
 import FirebaseFirestore
 
@@ -14,6 +12,8 @@ class IncidentChatViewController: UIViewController, UITableViewDelegate, UITable
     let mupdprofileService = MUPDProfileService.shared
     let chatService = ChatService.shared
     
+    var existingProfile: Profile!
+    
     var selectedIncident : PinDrop!
     var chat: [Message] = []
     
@@ -23,7 +23,7 @@ class IncidentChatViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLoad()
         messagesTable.delegate = self
         messagesTable.dataSource = self
-        self.title = selectedIncident?.userID
+        self.title = selectedIncident?.notifName
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -60,8 +60,8 @@ class IncidentChatViewController: UIViewController, UITableViewDelegate, UITable
 
             let thisMessage = chat[indexPath.row]
             
-            cell.textLabel?.text = thisMessage.postedBy
-            cell.detailTextLabel?.text = thisMessage.postedMessage
+            cell.textLabel?.text = thisMessage.postedMessage
+            cell.detailTextLabel?.text = thisMessage.postedBy + "\n"+thisMessage.messageID
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             
         return cell
@@ -80,6 +80,16 @@ class IncidentChatViewController: UIViewController, UITableViewDelegate, UITable
     func confirmAlert() {
         let alert = UIAlertController(title: "Message", message: "Message Sent!", preferredStyle: .alert)
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+            // Code in this block will trigger when OK button is tapped.
+            print("Ok button tapped");
+        }
+        alert.addAction(OKAction)
+        self.present(alert, animated: true, completion:nil)
+    }
+    
+    func closedAlert() {
+        let alert = UIAlertController(title: "Message", message: "Message Cannot be Sent, Incident Closed.", preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
             
             // Code in this block will trigger when OK button is tapped.
             print("Ok button tapped");
@@ -88,37 +98,35 @@ class IncidentChatViewController: UIViewController, UITableViewDelegate, UITable
         self.present(alert, animated: true, completion:nil)
     }
     
-    @IBAction func sendButton(_ sender: Any) {
-        //@IBAction func sendButton(_ sender: Any) {
-        print("You have pressed the send button!")
-       
-        let messageID = convertTimestamp()
-        
-        let postedBy = userService.currentUser!.email
-                
-        let postedMessage = newMessage?.text
-
-        let sentMessage = Message(messageID: messageID, postedBy: postedBy, postedMessage: postedMessage!)
-        
-        //chatService.addMessage(message: sentMessage, notificationID: selectedIncident.pinDropId)
-        
-        chatService.addMessageMaybe(message: sentMessage, notificationID: selectedIncident.pinDropId, docID: convertTimestamp())
-        
-        confirmAlert()
+    @IBOutlet weak var button: UIBarButtonItem!
+    
+    
+    @IBAction func sendButton(_ sender: Any) {    
+            
+            print("You have pressed the send button!")
+            
+            let messageID = convertTimestamp()
+            
+            let postedBy = userService.currentUser!.email
+            
+            let postedMessage = newMessage?.text
+            
+            let sentMessage = Message(messageID: messageID, postedBy: postedBy, postedMessage: postedMessage!)
+            
+            chatService.addMessageMaybe(message: sentMessage, notificationID: selectedIncident.pinDropId, docID: convertTimestamp())
+            
+            confirmAlert()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
         if selectedIncident != nil {
             if(segue.identifier == "profileSegue") {
                 let dvc = segue.destination as! ProfileViewController
+
                 dvc.selectedUserID = selectedIncident.userID
-                dvc.selectedProfile = profileService.getProfileInfo(userID: selectedIncident.userID)
                 print("reporter's doc id & email: ")
                 print(selectedIncident!.userID)
                 print("reporter's doc id & email local: ")
-                print(dvc.selectedUserID)
             }
         }
     }

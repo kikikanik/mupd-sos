@@ -2,9 +2,6 @@
 //  PinDropService.swift
 //  MapDemo4Lak
 //
-//  Created by Kinneret Kanik on 08/02/2023.
-//
-
 import Foundation
 import FirebaseFirestore
 import Firebase
@@ -26,16 +23,6 @@ class PinDropService {
        
    }
     
-    // Adding notification type/name from 'EmergencyTabViewController'
-    func addNotifName(pinDrop: PinDrop) {
-        fsCollection.addDocument(data: pinDrop.createPinDropDict())
-    }
-    
-    // Adding a NEW pin drop with NEW documentID
-    func addNotification(pinDrop: PinDrop) {
-        fsCollection.addDocument(data: pinDrop.createPinDropDict()) //sending Pin Drop attributes from object to Firestore
-    }
-    
     func updateNotification(pinDrop: PinDrop, docID: String) {
         fsCollection.document(docID).setData(pinDrop.createPinDropDict())
     }
@@ -47,28 +34,27 @@ class PinDropService {
         }
         return nil;
     }
-    
-    
-    //func here to get all the notifications from firestore
-    func observeNotifications () {
+
+    func observeNotifications() {
         
-        fsCollection.addSnapshotListener { (querySnapshot, err) in
-           
+        fsCollection.addSnapshotListener { [self] (querySnapshot, err) in
+            notifications.removeAll()
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-                self.notifications = []
+                
                 for document in querySnapshot!.documents {
                     print("\(document.documentID) => \(document.data())")
-                   
+                    
                     if let aNotification = PinDrop(data: document.data(), documentID: document.documentID) {
+                        print("Success adding notification to array notifications")
                         self.notifications.append(aNotification)
+                    } else {
+                        print("Error adding reports to array aReports")
                     }
                 }
-                NotificationCenter.default.post(name: Notification.Name(rawValue:  kSOSNotificaionsChanged), object: self)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: kSOSNotificationsChanged), object: self)
             }
         }
-       
     }
-
 }

@@ -2,8 +2,6 @@
 //  CreateReportViewController.swift
 //  MUPD-SOS
 //
-//  Created by Kinneret Kanik on 02/03/2023.
-//
 
 import UIKit
 import Firebase
@@ -39,10 +37,6 @@ class CreateReportViewController: UIViewController {
             alertReportError()
             return
         }
-        
-       // let newDocumentID = UUID().uuidString
-       // print ("UNIQUE IDENTIFIER OF Report: \(newDocumentID)")
-       // let reportID = newDocumentID
         
         mupdprofileService.getMUPDProfile(docID: userService.currentUser!.email) { [self] response in
             if (response) {

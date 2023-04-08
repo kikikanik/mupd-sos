@@ -2,8 +2,6 @@
 //  ReportDetailViewController.swift
 //  MUPD-SOS
 //
-//  Created by Kinneret Kanik on 05/03/2023.
-//
 
 import UIKit
 
@@ -16,7 +14,8 @@ class ReportDetailViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+        self.reportList.estimatedRowHeight = 50.0
+        self.reportList.rowHeight = UITableView.automaticDimension
         self.title = selectedReport.emergencyType.capitalized + " Report"
         // Make the VC delegate and datasource
         reportList.dataSource = self
@@ -24,7 +23,15 @@ class ReportDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
+        //return 0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if (indexPath.row == 4) {
+        return 400.0
+        }
+        return 50.00
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -41,7 +48,10 @@ class ReportDetailViewController: UIViewController, UITableViewDelegate, UITable
             cell.textLabel?.text = "Time Posted: "
             cell.detailTextLabel?.text = selectedReport?.timestamp
         case 3:
-            cell.textLabel?.text = "Message: "
+            cell.textLabel?.text = "Report: "
+            cell.detailTextLabel?.text = ""
+        case 4:
+            cell.textLabel?.text = ""
             cell.detailTextLabel?.text = selectedReport?.message
         default:
             cell.textLabel?.text = "?"

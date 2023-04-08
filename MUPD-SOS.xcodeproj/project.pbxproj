@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B4DBA44F29DF5B4D009A3CA5 /* ProfileAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DBA44E29DF5B4D009A3CA5 /* ProfileAnnotation.swift */; };
 		D807E9D929AE66CF00F46311 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D807E9D829AE66CF00F46311 /* Profile.swift */; };
 		D807E9DB29AE66E300F46311 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D807E9DA29AE66E300F46311 /* ProfileService.swift */; };
 		D8163DEB29B4E624003A25CC /* ReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8163DEA29B4E624003A25CC /* ReportTableViewCell.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B4DBA44E29DF5B4D009A3CA5 /* ProfileAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAnnotation.swift; sourceTree = "<group>"; };
 		D807E9D829AE66CF00F46311 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		D807E9DA29AE66E300F46311 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		D8163DEA29B4E624003A25CC /* ReportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTableViewCell.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				D888370E29B174490013176B /* AnnotationTypes.swift */,
 				D86D1AFE29A3F3DF0092A5D7 /* NotificationAnnotation.swift */,
 				D86D1AFC29A3F3B00092A5D7 /* MapViewController.swift */,
+				B4DBA44E29DF5B4D009A3CA5 /* ProfileAnnotation.swift */,
 				D888371029B1749B0013176B /* PinDropDetailViewController.swift */,
 				D888370C29B10BC20013176B /* MUPDProfileViewController.swift */,
 				D8163DEC29B4F392003A25CC /* OnDutyViewController.swift */,
@@ -371,6 +374,7 @@
 				D888372229B4D6940013176B /* ReportDetailViewController.swift in Sources */,
 				D888371829B1827F0013176B /* CreateReportViewController.swift in Sources */,
 				D86D1AFF29A3F3DF0092A5D7 /* NotificationAnnotation.swift in Sources */,
+				B4DBA44F29DF5B4D009A3CA5 /* ProfileAnnotation.swift in Sources */,
 				D8A6799229AE60B800A65C35 /* OpeningPageViewController.swift in Sources */,
 				D86D1AFD29A3F3B00092A5D7 /* MapViewController.swift in Sources */,
 				D888370D29B10BC20013176B /* MUPDProfileViewController.swift in Sources */,
@@ -529,6 +533,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -557,6 +562,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

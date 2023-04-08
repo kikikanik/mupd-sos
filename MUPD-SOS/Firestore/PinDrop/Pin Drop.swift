@@ -2,22 +2,20 @@
 //  Notification.swift
 //  MUPD-SOS
 //
-//  Created by Kinneret Kanik on 20/02/2023.
-//
 import Foundation
 import CoreLocation
 import Firebase
 import FirebaseFirestore
 
 struct PinDrop {
-    var userID: String              // Pulled from exisitng user from User collection
+    var userID: String       // Pulled from exisitng user from User collection
     var pinDropId: String
     var userCoordinateLat: Double
     var userCoordinateLong: Double
     var reportedLocationLat: Double
     var reportedLocationLong: Double
     var identity:String
-    var acceptedNotif: Bool      //Array<Int>
+    var acceptedNotif: Bool
     var importance: Int
     var notifName: String
     var state: Bool
@@ -72,7 +70,6 @@ struct PinDrop {
         self.timestamp = timestamp
         self.pinDropId = pinDropId
     }
-    
     
     func createPinDropDict() -> [String: Any]{
         let dict: [String: Any] = [
